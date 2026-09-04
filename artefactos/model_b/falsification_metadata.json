@@ -1,0 +1,404 @@
+{
+  "model_b_checkpoint_hash": "7162428747420dd68e3e9fc28d800b2d9e43182b40319277bd69ae9f58a3e3b7",
+  "dataset_fingerprint": "1f659a437a417e08b4274da79bfba8853887b2d4888d235c87e4a5d4ce5cf95d",
+  "processed_fingerprint": "cd496e81ad37906e6da3c4abfdc249da48623a37d807fba1189c4fa198d4b65a",
+  "split_fingerprint": "d938f54ba6258ba09db12412b9bfd7a99d3472fffd68174c53d4a19c2a10f04f",
+  "evaluation_split": "VALIDATION",
+  "test_evaluated": false,
+  "original_validation_ap": 0.7206737920131868,
+  "permutation_seeds": [
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109
+  ],
+  "permutation_runs": [
+    {
+      "seed": 100,
+      "validation_ap": 0.25531564875577856,
+      "mechanism_ap": {
+        "testing_cashout": 0.1743828206475201,
+        "channel_takeover": 0.16550801456688144,
+        "amount_anomaly": 0.004314180848824954
+      }
+    },
+    {
+      "seed": 101,
+      "validation_ap": 0.2806551929592765,
+      "mechanism_ap": {
+        "testing_cashout": 0.19736026632941525,
+        "channel_takeover": 0.19801735911024468,
+        "amount_anomaly": 0.004501734051253711
+      }
+    },
+    {
+      "seed": 102,
+      "validation_ap": 0.2849611704622187,
+      "mechanism_ap": {
+        "testing_cashout": 0.18973409149909504,
+        "channel_takeover": 0.21217651558261458,
+        "amount_anomaly": 0.0042070088288037434
+      }
+    },
+    {
+      "seed": 103,
+      "validation_ap": 0.2780591033512292,
+      "mechanism_ap": {
+        "testing_cashout": 0.20178358912410957,
+        "channel_takeover": 0.1801424597139739,
+        "amount_anomaly": 0.004175512920913453
+      }
+    },
+    {
+      "seed": 104,
+      "validation_ap": 0.26331802277070504,
+      "mechanism_ap": {
+        "testing_cashout": 0.1741733694134334,
+        "channel_takeover": 0.17940637839884646,
+        "amount_anomaly": 0.00453973066633212
+      }
+    },
+    {
+      "seed": 105,
+      "validation_ap": 0.32619698330023017,
+      "mechanism_ap": {
+        "testing_cashout": 0.25153859731503225,
+        "channel_takeover": 0.22912703752728464,
+        "amount_anomaly": 0.0043652438716621465
+      }
+    },
+    {
+      "seed": 106,
+      "validation_ap": 0.2691887482136037,
+      "mechanism_ap": {
+        "testing_cashout": 0.19039974554770875,
+        "channel_takeover": 0.17995832413403187,
+        "amount_anomaly": 0.004686676852009932
+      }
+    },
+    {
+      "seed": 107,
+      "validation_ap": 0.27896559843866403,
+      "mechanism_ap": {
+        "testing_cashout": 0.19145478724196996,
+        "channel_takeover": 0.19726027260734283,
+        "amount_anomaly": 0.005028671195251492
+      }
+    },
+    {
+      "seed": 108,
+      "validation_ap": 0.3039338048486264,
+      "mechanism_ap": {
+        "testing_cashout": 0.20834891213371504,
+        "channel_takeover": 0.2222121780581424,
+        "amount_anomaly": 0.0048313182280426996
+      }
+    },
+    {
+      "seed": 109,
+      "validation_ap": 0.3026572167469341,
+      "mechanism_ap": {
+        "testing_cashout": 0.21655197465471762,
+        "channel_takeover": 0.2264827974055215,
+        "amount_anomaly": 0.004606836750493502
+      }
+    }
+  ],
+  "permuted_mean_ap": 0.2843251489847266,
+  "permuted_std_ap": 0.020168383416294573,
+  "permuted_min_ap": 0.25531564875577856,
+  "permuted_max_ap": 0.32619698330023017,
+  "permutation_absolute_drop": 0.4363486430284602,
+  "permutation_relative_drop": 0.6054731667284995,
+  "original_mechanism_ap_one_vs_legitimate": {
+    "testing_cashout": 0.8022131569256151,
+    "channel_takeover": 0.525874326132508,
+    "amount_anomaly": 0.006152883478639347
+  },
+  "short_history_max_events": 3,
+  "short_history_ap": 0.7108234251071578,
+  "short_history_absolute_drop": 0.009850366906029029,
+  "short_history_relative_drop": 0.013668274072395833,
+  "short_mechanism_ap_one_vs_legitimate": {
+    "testing_cashout": 0.781959060055287,
+    "channel_takeover": 0.5212383379361502,
+    "amount_anomaly": 0.005263348497911468
+  },
+  "history_length_groups": {
+    "unchanged_le_3": 0,
+    "truncated_gt_3": 14365
+  },
+  "hard_negative_score_summary": {
+    "original": {
+      "legitimate_trip": {
+        "n": 75,
+        "mean": 0.40176595504861323,
+        "median": 0.22029784321784973,
+        "q90": 0.9808784127235413
+      },
+      "legitimate_large_purchase": {
+        "n": 25,
+        "mean": 0.25677061308175325,
+        "median": 0.09465464949607849,
+        "q90": 0.7386589407920838
+      },
+      "legitimate_shopping_spree": {
+        "n": 105,
+        "mean": 0.014592180551110124,
+        "median": 0.006522128824144602,
+        "q90": 0.031069610267877627
+      },
+      "legitimate_micro_purchases": {
+        "n": 80,
+        "mean": 0.3382939901575696,
+        "median": 0.057920560240745544,
+        "q90": 0.9480478823184968
+      }
+    },
+    "permuted_seed_100": {
+      "legitimate_trip": {
+        "n": 75,
+        "mean": 0.3744675655476749,
+        "median": 0.21869763731956482,
+        "q90": 0.9691625833511353
+      },
+      "legitimate_large_purchase": {
+        "n": 25,
+        "mean": 0.24998857708647848,
+        "median": 0.11475878208875656,
+        "q90": 0.6641094446182252
+      },
+      "legitimate_shopping_spree": {
+        "n": 105,
+        "mean": 0.023320479877232476,
+        "median": 0.0061079366132617,
+        "q90": 0.054826477915048646
+      },
+      "legitimate_micro_purchases": {
+        "n": 80,
+        "mean": 0.2961151483427784,
+        "median": 0.0401898380368948,
+        "q90": 0.9413192093372346
+      }
+    },
+    "short": {
+      "legitimate_trip": {
+        "n": 75,
+        "mean": 0.42017776019871234,
+        "median": 0.24005579948425293,
+        "q90": 0.9823637127876282
+      },
+      "legitimate_large_purchase": {
+        "n": 25,
+        "mean": 0.2526483180560172,
+        "median": 0.06881565600633621,
+        "q90": 0.6996284961700441
+      },
+      "legitimate_shopping_spree": {
+        "n": 105,
+        "mean": 0.013248853217893547,
+        "median": 0.006355724297463894,
+        "q90": 0.029817163199186363
+      },
+      "legitimate_micro_purchases": {
+        "n": 80,
+        "mean": 0.321962464405442,
+        "median": 0.04753467999398708,
+        "q90": 0.9549958229064941
+      }
+    }
+  },
+  "real_example": {
+    "example_id": "EX_000005458",
+    "permutation_seed": 100,
+    "original": [
+      {
+        "timestamp": "2025-03-17T19:53:07",
+        "amount": "313.23",
+        "channel": "POS",
+        "merchant_category": "services"
+      },
+      {
+        "timestamp": "2025-03-18T13:15:57",
+        "amount": "167.92",
+        "channel": "CONTACTLESS",
+        "merchant_category": "restaurant"
+      },
+      {
+        "timestamp": "2025-04-04T00:27:12",
+        "amount": "226.36",
+        "channel": "POS",
+        "merchant_category": "restaurant"
+      },
+      {
+        "timestamp": "2025-04-23T22:47:00",
+        "amount": "255.7",
+        "channel": "CONTACTLESS",
+        "merchant_category": "retail"
+      },
+      {
+        "timestamp": "2025-04-27T16:29:05",
+        "amount": "81.41",
+        "channel": "CONTACTLESS",
+        "merchant_category": "entertainment"
+      },
+      {
+        "timestamp": "2025-05-01T17:12:44",
+        "amount": "62.38",
+        "channel": "ONLINE",
+        "merchant_category": "restaurant"
+      },
+      {
+        "timestamp": "2025-05-08T10:19:34",
+        "amount": "97.04",
+        "channel": "ONLINE",
+        "merchant_category": "fuel"
+      },
+      {
+        "timestamp": "2025-05-17T18:38:50",
+        "amount": "114.15",
+        "channel": "ONLINE",
+        "merchant_category": "retail"
+      },
+      {
+        "timestamp": "2025-05-17T22:22:39",
+        "amount": "28.07",
+        "channel": "CONTACTLESS",
+        "merchant_category": "pharmacy"
+      },
+      {
+        "timestamp": "2025-05-23T16:11:11",
+        "amount": "172.05",
+        "channel": "ONLINE",
+        "merchant_category": "grocery"
+      },
+      {
+        "timestamp": "2025-05-27T22:12:47",
+        "amount": "105.04",
+        "channel": "POS",
+        "merchant_category": "services"
+      },
+      {
+        "timestamp": "2025-05-28T18:56:37",
+        "amount": "26.02",
+        "channel": "CONTACTLESS",
+        "merchant_category": "grocery"
+      }
+    ],
+    "permuted": [
+      {
+        "timestamp": "2025-04-23T22:47:00",
+        "amount": "255.7",
+        "channel": "CONTACTLESS",
+        "merchant_category": "retail"
+      },
+      {
+        "timestamp": "2025-04-04T00:27:12",
+        "amount": "226.36",
+        "channel": "POS",
+        "merchant_category": "restaurant"
+      },
+      {
+        "timestamp": "2025-05-23T16:11:11",
+        "amount": "172.05",
+        "channel": "ONLINE",
+        "merchant_category": "grocery"
+      },
+      {
+        "timestamp": "2025-05-27T22:12:47",
+        "amount": "105.04",
+        "channel": "POS",
+        "merchant_category": "services"
+      },
+      {
+        "timestamp": "2025-05-17T18:38:50",
+        "amount": "114.15",
+        "channel": "ONLINE",
+        "merchant_category": "retail"
+      },
+      {
+        "timestamp": "2025-03-18T13:15:57",
+        "amount": "167.92",
+        "channel": "CONTACTLESS",
+        "merchant_category": "restaurant"
+      },
+      {
+        "timestamp": "2025-03-17T19:53:07",
+        "amount": "313.23",
+        "channel": "POS",
+        "merchant_category": "services"
+      },
+      {
+        "timestamp": "2025-04-27T16:29:05",
+        "amount": "81.41",
+        "channel": "CONTACTLESS",
+        "merchant_category": "entertainment"
+      },
+      {
+        "timestamp": "2025-05-28T18:56:37",
+        "amount": "26.02",
+        "channel": "CONTACTLESS",
+        "merchant_category": "grocery"
+      },
+      {
+        "timestamp": "2025-05-01T17:12:44",
+        "amount": "62.38",
+        "channel": "ONLINE",
+        "merchant_category": "restaurant"
+      },
+      {
+        "timestamp": "2025-05-08T10:19:34",
+        "amount": "97.04",
+        "channel": "ONLINE",
+        "merchant_category": "fuel"
+      },
+      {
+        "timestamp": "2025-05-17T22:22:39",
+        "amount": "28.07",
+        "channel": "CONTACTLESS",
+        "merchant_category": "pharmacy"
+      }
+    ],
+    "short_history": [
+      {
+        "timestamp": "2025-05-23T16:11:11",
+        "amount": "172.05",
+        "channel": "ONLINE",
+        "merchant_category": "grocery"
+      },
+      {
+        "timestamp": "2025-05-27T22:12:47",
+        "amount": "105.04",
+        "channel": "POS",
+        "merchant_category": "services"
+      },
+      {
+        "timestamp": "2025-05-28T18:56:37",
+        "amount": "26.02",
+        "channel": "CONTACTLESS",
+        "merchant_category": "grocery"
+      }
+    ],
+    "target": {
+      "transaction_id": "TX_000079154",
+      "timestamp": "2025-05-29T19:50:28",
+      "amount": "5.48",
+      "channel": "CONTACTLESS",
+      "merchant_category": "services",
+      "is_fraud": "1"
+    }
+  },
+  "figures": [
+    "figures/order_permutation_validation.png",
+    "figures/history_truncation_validation.png",
+    "figures/order_evidence_summary.png"
+  ],
+  "checkpoint_hash_after": "7162428747420dd68e3e9fc28d800b2d9e43182b40319277bd69ae9f58a3e3b7",
+  "created_at_utc": "2026-09-04T16:43:17+00:00"
+}

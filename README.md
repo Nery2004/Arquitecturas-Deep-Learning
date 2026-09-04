@@ -105,6 +105,22 @@ Modelo A obtuvo 0.910021 y B 0.720674 en la misma VALIDATION. Esta diferencia po
 
 El checkpoint está en `artefactos/model_b/model_b.pt`, la metadata en `artefactos/model_b/model_b_metadata.json`, el historial en `artefactos/model_b/training_history.csv` y los candidatos en `experiments/model_b_results.csv`. Se reproduce con `.venv/bin/python -m src.train_model_b`.
 
+## Evidencia del valor del orden
+
+Para comprobar que B no dependía solamente de los eventos vistos como un conjunto, barajamos los eventos válidos dentro de cada historia de VALIDATION. Montos, canales, categorías, distancias, variables temporales, padding, longitudes, operación actual, target y checkpoint permanecieron iguales. `time_since_previous` viajó pegado a su evento; no se recalculó. Se evaluaron seeds 100–109 sin reentrenar.
+
+El AP original fue 0.720674. Las permutaciones obtuvieron una media de 0.284325, desviación 0.020168 y rango 0.255316–0.326197. La caída absoluta fue 0.436349 y la relativa 60.55%. Esta caída grande y consistente es evidencia fuerte de que B utiliza información relacionada con el orden. No demuestra causalidad ni hace que B supere a A.
+
+En evaluación one-vs-legitimate, `testing_cashout` cayó de AP 0.802213 a aproximadamente 0.200 tras permutar; `channel_takeover`, de 0.525874 a aproximadamente 0.199. `amount_anomaly` tenía AP 0.006153 y permaneció muy bajo, coherente con que B no lo representa bien. Los demás fraudes se excluyeron al calcular cada AP específico.
+
+## Prueba de historia recortada
+
+Usamos el mismo checkpoint y mantuvimos la shape 12, pero dejamos únicamente los tres eventos reales más recientes. AP pasó de 0.720674 a 0.710823: caída absoluta 0.009850 y relativa 1.37%. Los 14,365 ejemplos de VALIDATION tenían más de tres eventos disponibles, de modo que todos fueron intervenidos.
+
+La evidencia del valor de contexto más allá de tres operaciones es limitada para este modelo. `testing_cashout` bajó de AP 0.802213 a 0.781959; `channel_takeover`, de 0.525874 a 0.521238; y `amount_anomaly`, de 0.006153 a 0.005263. Permutar pregunta si importa el orden de los mismos eventos; recortar pregunta si importa disponer de una historia más larga. Son pruebas distintas.
+
+Las evidencias completas están en `artefactos/model_b/falsification_metadata.json` y `experiments/falsification_results.csv`. TEST no se utilizó.
+
 ## Pregunta de investigación
 
 ¿El orden cronológico de las transacciones aporta información adicional para detectar fraude que no pueda capturarse únicamente mediante variables agregadas?
