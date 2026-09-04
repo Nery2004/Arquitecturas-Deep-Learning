@@ -3,6 +3,8 @@
 **Audiencia:** Comité de Riesgos del Banco del Altiplano  
 **Curso:** Deep Learning 2026 | **Equipo:** Proyecto 1
 
+**Repositorio del proyecto:** [https://github.com/Nery2004/Arquitecturas-Deep-Learning](https://github.com/Nery2004/Arquitecturas-Deep-Learning)
+
 ## Resumen ejecutivo
 
 Comparamos A (agregados), B (GRU secuencial) y C (híbrido). B sí utilizó el orden: su AP de VALIDATION cayó de 0.7207 a 0.2843 al permutar las mismas operaciones. Sin embargo, A obtuvo el mejor AP de TEST (0.9191) y el menor costo (Q83,820). El candidato es A, el ahorro frente a A es Q0 y recomendamos **CONSERVAR**.

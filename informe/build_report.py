@@ -109,6 +109,8 @@ def build_markdown(r, e, f, matrix):
 **Audiencia:** Comité de Riesgos del Banco del Altiplano  
 **Curso:** Deep Learning 2026 | **Equipo:** Proyecto 1
 
+**Repositorio del proyecto:** [https://github.com/Nery2004/Arquitecturas-Deep-Learning](https://github.com/Nery2004/Arquitecturas-Deep-Learning)
+
 ## Resumen ejecutivo
 
 Comparamos A (agregados), B (GRU secuencial) y C (híbrido). B sí utilizó el orden: su AP de VALIDATION cayó de {f['original_validation_ap']:.4f} a {f['permuted_mean_ap']:.4f} al permutar las mismas operaciones. Sin embargo, A obtuvo el mejor AP de TEST ({models['A']['test_ap']:.4f}) y el menor costo ({money(models['A']['cost_gtq'])}). El candidato es A, el ahorro frente a A es Q0 y recomendamos **CONSERVAR**.
@@ -172,6 +174,7 @@ def build():
     # Página 1
     story += [Spacer(1, .05*inch), p("Monitoreo transaccional:<br/>¿qué revela el orden de las operaciones?", st["title"]),
               p("Evaluación del valor de modelos secuenciales para detección de fraude<br/><b>Comité de Riesgos del Banco del Altiplano</b> | Deep Learning 2026 | Equipo del Proyecto 1", st["subtitle"]),
+              p("<b>Repositorio del proyecto:</b> <link href='https://github.com/Nery2004/Arquitecturas-Deep-Learning' color='#2D6A8A'>https://github.com/Nery2004/Arquitecturas-Deep-Learning</link>", st["small"]),
               p("Resumen ejecutivo", st["h1"]),
               p(f"El banco necesitaba saber si leer las operaciones en secuencia justificaba cambiar un sistema basado en promedios, conteos y señales agregadas. Comparamos tres alternativas: A, sin secuencia ordenada; B, una GRU que recibió el historial en orden; y C, que combinó ambas representaciones. B sí utilizó el orden: en VALIDATION, su Average Precision (AP) cayó de {f['original_validation_ap']:.4f} a {f['permuted_mean_ap']:.4f} cuando permutamos exactamente los mismos eventos. Sin embargo, esa señal no se convirtió en una ventaja frente a A. En TEST, A alcanzó AP {models['A']['test_ap']:.4f} y un costo estimado de {money(models['A']['cost_gtq'])}; B y C costaron {money(models['B']['cost_gtq'])} y {money(models['C']['cost_gtq'])}. El candidato final, definido antes de abrir TEST, fue A con threshold {models['A']['threshold']:.6f}. Su ahorro frente al propio A es Q0. Recomendamos <b>CONSERVAR</b>: mantener A y no incorporar secuencias todavía, aunque el hallazgo sobre el orden merece validarse con datos reales.", st["body"]),
               p("1. La decisión y los datos", st["h1"]),

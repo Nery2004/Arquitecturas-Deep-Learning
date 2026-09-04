@@ -4,6 +4,8 @@
 
 Este proyecto estudia si leer el orden cronológico de las transacciones mejora la detección de fraude frente a un modelo que usa resúmenes causales del historial. Comparamos un baseline tabular A, una GRU secuencial B y un híbrido C bajo el mismo split temporal, métrica y universo de ejemplos.
 
+**Repositorio del proyecto:** [https://github.com/Nery2004/Arquitecturas-Deep-Learning](https://github.com/Nery2004/Arquitecturas-Deep-Learning)
+
 El resultado fue honesto: B sí usa el orden, pero A obtuvo mejor Average Precision y menor costo. Por eso el candidato final es A y la recomendación es **CONSERVAR** el enfoque agregado.
 
 ## Estructura del repositorio
