@@ -1,0 +1,161 @@
+{
+  "model_name": "MODEL_C_CANDIDATE",
+  "hypothesis": "Combinar la informaci\u00f3n secuencial con las variables agregadas mejorar\u00e1 la detecci\u00f3n porque cada representaci\u00f3n resume un aspecto diferente del comportamiento de una tarjeta.",
+  "success_criterion": "C debe superar el AP de B en VALIDATION y posteriormente no aumentar el costo econ\u00f3mico; esta etapa solo resuelve la parte predictiva.",
+  "control_model": "B",
+  "architecture": "GRU history + current branch + historical aggregate branch",
+  "training_from_scratch": true,
+  "gru": {
+    "hidden_size": 64,
+    "num_layers": 1,
+    "bidirectional": false
+  },
+  "embeddings": {
+    "merchant": 6,
+    "channel": 3
+  },
+  "max_history": 12,
+  "sequence_numeric_features": [
+    "amount",
+    "distance_from_home_km",
+    "is_international",
+    "hour_sin",
+    "hour_cos",
+    "day_sin",
+    "day_cos",
+    "time_since_previous_hours"
+  ],
+  "sequence_categorical_features": [
+    "merchant_category",
+    "channel"
+  ],
+  "current_numeric_features": [
+    "current_amount",
+    "current_distance_from_home_km",
+    "current_is_international",
+    "current_hour_sin",
+    "current_hour_cos",
+    "current_day_sin",
+    "current_day_cos",
+    "time_since_previous_hours"
+  ],
+  "current_categorical_features": [
+    "current_merchant_category",
+    "current_channel"
+  ],
+  "current_branch_hidden": 64,
+  "aggregate_branch": {
+    "input_features": [
+      "historical_mean_amount",
+      "historical_std_amount",
+      "historical_max_amount",
+      "historical_transaction_count",
+      "current_vs_mean_amount_ratio",
+      "amount_zscore_personal",
+      "historical_mean_distance",
+      "distance_ratio_to_typical",
+      "current_channel_frequency_history",
+      "current_channel_is_unusual",
+      "current_merchant_frequency_history",
+      "current_merchant_is_unusual",
+      "tx_count_1h",
+      "tx_count_6h",
+      "tx_count_24h",
+      "tx_count_7d",
+      "amount_mean_24h",
+      "amount_max_24h",
+      "amount_sum_24h",
+      "merchant_diversity_24h",
+      "channel_diversity_24h",
+      "international_count_24h",
+      "has_short_history"
+    ],
+    "hidden": 32
+  },
+  "fusion_hidden": 64,
+  "dropout": 0.4,
+  "learning_rate": 0.0008,
+  "optimizer": "AdamW",
+  "batch_size": 256,
+  "pos_weight": 56.87027027027027,
+  "best_epoch": 11,
+  "epochs_run": 16,
+  "trainable_parameters": 28315,
+  "seed": 42,
+  "dataset_fingerprint": "1f659a437a417e08b4274da79bfba8853887b2d4888d235c87e4a5d4ce5cf95d",
+  "processed_fingerprint": "cd496e81ad37906e6da3c4abfdc249da48623a37d807fba1189c4fa198d4b65a",
+  "split_fingerprint": "d938f54ba6258ba09db12412b9bfd7a99d3472fffd68174c53d4a19c2a10f04f",
+  "training_split": "TRAIN",
+  "selection_split": "VALIDATION",
+  "early_stopping_split": "VALIDATION",
+  "test_evaluated": false,
+  "train_ap": 0.8815193102653213,
+  "validation_ap": 0.815180298825746,
+  "train_validation_gap": 0.06633901143957521,
+  "model_b_validation_ap": 0.7206737920131867,
+  "delta_c_vs_b": 0.09450650681255934,
+  "relative_delta_c_vs_b": 0.1311363169577146,
+  "predictive_criterion_met": true,
+  "economic_criterion_status": "pending",
+  "ablation_normal_ap": 0.815180298825746,
+  "ablation_aggregates_neutral_ap": 0.4294774529039803,
+  "ablation_difference": 0.38570284592176574,
+  "validation_fraud_score_summary": {
+    "testing_cashout": {
+      "n": 123,
+      "mean": 0.9482796914814934,
+      "median": 0.9985073208808899,
+      "q90": 0.9999634981155395
+    },
+    "channel_takeover": {
+      "n": 90,
+      "mean": 0.8975359153170656,
+      "median": 0.9964669644832611,
+      "q90": 0.9999213933944702
+    },
+    "amount_anomaly": {
+      "n": 15,
+      "mean": 0.23561922215352146,
+      "median": 0.11305840313434601,
+      "q90": 0.5883555054664611
+    }
+  },
+  "validation_hard_negative_score_summary": {
+    "legitimate_trip": {
+      "n": 75,
+      "mean": 0.2817150675649706,
+      "median": 0.024089455604553223,
+      "q90": 0.9272734642028809
+    },
+    "legitimate_large_purchase": {
+      "n": 25,
+      "mean": 0.22228288100101054,
+      "median": 0.08848965913057327,
+      "q90": 0.6737452387809754
+    },
+    "legitimate_shopping_spree": {
+      "n": 105,
+      "mean": 0.04659563189552067,
+      "median": 0.01849251613020897,
+      "q90": 0.11457763165235524
+    },
+    "legitimate_micro_purchases": {
+      "n": 80,
+      "mean": 0.36901006781850754,
+      "median": 0.1987931877374649,
+      "q90": 0.9660330176353454
+    }
+  },
+  "reproducibility_validation_ap_run_1": 0.815180298825746,
+  "reproducibility_validation_ap_run_2": 0.815180298825746,
+  "reproducibility_absolute_difference": 0.0,
+  "primary_metric": "AUC-PR / Average Precision (AP)",
+  "model_fingerprint_sha256": "26f0d7e23383aba5fa8c8de3e2cb2609648d4a1f92973a16ea3843d123d12a0e",
+  "software_versions": {
+    "python": "3.12.14",
+    "numpy": "1.26.4",
+    "torch": "2.2.2",
+    "scikit-learn": "1.5.2"
+  },
+  "created_at_utc": "2026-09-04T17:02:41+00:00"
+}

@@ -121,6 +121,16 @@ La evidencia del valor de contexto más allá de tres operaciones es limitada pa
 
 Las evidencias completas están en `artefactos/model_b/falsification_metadata.json` y `experiments/falsification_results.csv`. TEST no se utilizó.
 
+## Apuesta C — Modelo híbrido
+
+La hipótesis escrita antes de entrenar fue que combinar secuencia y agregados mejoraría la detección porque cada representación resume un aspecto distinto. El control es B. El criterio previo exige que C supere el AP de B en VALIDATION y, posteriormente, que la mejora no aumente el costo económico.
+
+C se entrenó desde cero. Conserva la GRU de B —64 unidades, una capa, embeddings 6/3 y rama current de 64— y añade una rama `Linear(23, 32) + ReLU + Dropout(0.2)` para los agregados históricos de A. Las tres ramas se concatenan y pasan por una fusión de 64 unidades, ReLU, dropout 0.4 y una salida lineal. No se duplicaron las current features dentro de la rama agregada.
+
+El candidato C2 alcanzó AP 0.881519 en TRAIN y 0.815180 en VALIDATION, con gap 0.066339. Superó a B por 0.094507 AP (+13.11%), aunque quedó debajo de A (0.910021). Por tanto, C cumple la parte predictiva del criterio respecto al control B; el veredicto completo es parcial porque la condición económica todavía no se ha evaluado.
+
+Al neutralizar los agregados estandarizados con cero usando el mismo checkpoint, AP cayó de 0.815180 a 0.429477. Esto indica que C depende de la rama agregada. Cero representa la media de TRAIN después del escalado, no valores aleatorios. El checkpoint quedó congelado en `artefactos/model_c/model_c.pt`; TEST no se evaluó.
+
 ## Pregunta de investigación
 
 ¿El orden cronológico de las transacciones aporta información adicional para detectar fraude que no pueda capturarse únicamente mediante variables agregadas?
@@ -244,8 +254,8 @@ En el entorno inspeccionado durante las etapas 0 y 1 estaban disponibles NumPy 2
 - **Decisión:** combinar representación GRU y agregados.
 - **Alternativas consideradas:** GRU sola, ensemble tardío y red densa solo con agregados.
 - **Razón inicial:** las dos representaciones pueden capturar señales complementarias.
-- **Evidencia que deberá revisarse posteriormente:** diferencia de AUC-PR e impacto económico en VALIDATION bajo el criterio predefinido.
-- **Veredicto final:** pendiente.
+- **Evidencia que deberá revisarse posteriormente:** C obtuvo AP 0.815180 frente a 0.720674 de B; la ablación sin agregados cayó a 0.429477. Falta el criterio económico.
+- **Veredicto final:** cumple la parte predictiva de la apuesta; veredicto completo pendiente de evaluación económica.
 
 ### 4. HistGradientBoosting como Modelo A
 
