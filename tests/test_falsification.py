@@ -81,7 +81,12 @@ class FalsificationTests(unittest.TestCase):
 
     def test_h11_h12_same_checkpoint_and_no_test(self) -> None:
         self.assertEqual(self.metadata["checkpoint_hash_after"],self.metadata["model_b_checkpoint_hash"])
-        self.assertFalse(Path("artefactos/model_b/test_scores.csv").exists())
+        final = Path("artefactos/final_evaluation.json")
+        if final.exists():
+            self.assertEqual(json.loads(final.read_text())["experimental_status"], "CLOSED")
+            self.assertTrue(Path("artefactos/model_b/test_scores.csv").exists())
+        else:
+            self.assertFalse(Path("artefactos/model_b/test_scores.csv").exists())
 
 
 if __name__ == "__main__":unittest.main()

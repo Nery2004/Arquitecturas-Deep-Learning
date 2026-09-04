@@ -93,7 +93,9 @@ class ModelBAuditTests(unittest.TestCase):
         self.assertEqual(self.metadata["training_split"],"TRAIN");self.assertEqual(self.metadata["early_stopping_split"],"VALIDATION")
 
     def test_b15_test_not_evaluated(self) -> None:
-        self.assertFalse(self.metadata["test_evaluated"]);self.assertFalse(Path("artefactos/model_b/test_scores.csv").exists())
+        self.assertFalse(self.metadata["test_evaluated"])
+        final=Path("artefactos/final_evaluation.json")
+        self.assertEqual(Path("artefactos/model_b/test_scores.csv").exists(), final.exists())
 
     def test_b16_reproducible(self) -> None:
         self.assertLessEqual(self.metadata["reproducibility_absolute_difference"],1e-12)

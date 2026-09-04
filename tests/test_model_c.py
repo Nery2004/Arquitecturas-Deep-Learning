@@ -69,7 +69,9 @@ class ModelCAuditTests(unittest.TestCase):
         self.assertEqual(self.meta["training_split"],"TRAIN");self.assertEqual(self.meta["early_stopping_split"],"VALIDATION")
 
     def test_c18_test_not_evaluated(self)->None:
-        self.assertFalse(self.meta["test_evaluated"]);self.assertFalse(Path("artefactos/model_c/test_scores.csv").exists())
+        self.assertFalse(self.meta["test_evaluated"])
+        final=Path("artefactos/final_evaluation.json")
+        self.assertEqual(Path("artefactos/model_c/test_scores.csv").exists(),final.exists())
 
     def test_c19_ablation_same_checkpoint(self)->None:
         self.assertEqual(file_sha256(Path("artefactos/model_c/model_c.pt")),self.meta["model_fingerprint_sha256"])

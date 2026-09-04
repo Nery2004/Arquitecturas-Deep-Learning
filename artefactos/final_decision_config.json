@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "frozen_before_test_at_utc": "2026-09-04T17:09:30+00:00",
+  "test_opened": true,
+  "test_evaluation_timestamp": "2026-09-04T17:12:16+00:00",
+  "candidate_model": "A",
+  "final_threshold": 0.05548898134596948,
+  "selection_reason": "A obtuvo el mayor AP congelado en VALIDATION (0.9100 frente a 0.8152 de C y 0.7207 de B) y también el menor costo económico de VALIDATION. B sí mostró valor del orden bajo permutación, y C mejoró B, pero ninguno superó al sistema agregado A en la evidencia usada antes de TEST.",
+  "selection_data": "VALIDATION only",
+  "tie_break_rule": "highest threshold among exact minimum-cost ties",
+  "primary_metric": "AUC-PR / Average Precision (AP)",
+  "economic_costs_gtq": {
+    "false_negative": 4200,
+    "false_positive": 180
+  },
+  "economic_interpretation": "Academic expected-damage approximation; a TP is not guaranteed to save exactly Q4,200.",
+  "dataset_fingerprint": "1f659a437a417e08b4274da79bfba8853887b2d4888d235c87e4a5d4ce5cf95d",
+  "processed_fingerprint": "cd496e81ad37906e6da3c4abfdc249da48623a37d807fba1189c4fa198d4b65a",
+  "split_fingerprint": "d938f54ba6258ba09db12412b9bfd7a99d3472fffd68174c53d4a19c2a10f04f",
+  "candidate_checkpoint": "artefactos/model_a/model_a.joblib",
+  "candidate_checkpoint_sha256": "47a879faa8f4abf4472486584efd6ebf304397dbdb7e87a20ee8ca61f06e16eb",
+  "model_checkpoints_sha256": {
+    "A": "47a879faa8f4abf4472486584efd6ebf304397dbdb7e87a20ee8ca61f06e16eb",
+    "B": "7162428747420dd68e3e9fc28d800b2d9e43182b40319277bd69ae9f58a3e3b7",
+    "C": "26f0d7e23383aba5fa8c8de3e2cb2609648d4a1f92973a16ea3843d123d12a0e"
+  },
+  "validation_ap": {
+    "A": 0.9100214741075414,
+    "B": 0.7206737920131867,
+    "C": 0.815180298825746
+  },
+  "validation_thresholds": {
+    "A": 0.05548898134596948,
+    "B": 0.8253989815711975,
+    "C": 0.6682388782501221
+  },
+  "validation_metrics_at_threshold": {
+    "A": {
+      "threshold": 0.05548898134596948,
+      "TP": 217,
+      "FP": 212,
+      "TN": 13925,
+      "FN": 11,
+      "precision": 0.5058275058275058,
+      "recall": 0.9517543859649122,
+      "F1": 0.6605783866057838,
+      "economic_cost": 84360
+    },
+    "B": {
+      "threshold": 0.8253989815711975,
+      "TP": 187,
+      "FP": 406,
+      "TN": 13731,
+      "FN": 41,
+      "precision": 0.31534569983136596,
+      "recall": 0.8201754385964912,
+      "F1": 0.4555420219244824,
+      "economic_cost": 245280
+    },
+    "C": {
+      "threshold": 0.6682388782501221,
+      "TP": 201,
+      "FP": 333,
+      "TN": 13804,
+      "FN": 27,
+      "precision": 0.37640449438202245,
+      "recall": 0.881578947368421,
+      "F1": 0.5275590551181103,
+      "economic_cost": 173340
+    }
+  },
+  "validation_baselines": {
+    "never_block": {
+      "threshold": 5e-324,
+      "TP": 0,
+      "FP": 0,
+      "TN": 14137,
+      "FN": 228,
+      "precision": 0.0,
+      "recall": 0.0,
+      "F1": 0.0,
+      "economic_cost": 957600
+    },
+    "block_everything": {
+      "threshold": 0.0,
+      "TP": 228,
+      "FP": 14137,
+      "TN": 0,
+      "FN": 0,
+      "precision": 0.015871910894535327,
+      "recall": 1.0,
+      "F1": 0.0312478585623244,
+      "economic_cost": 2544660
+    }
+  },
+  "falsification_summary": {
+    "permuted_mean_ap": 0.2843251489847266,
+    "permutation_relative_drop": 0.6054731667284995,
+    "short_history_ap": 0.7108234251071578
+  },
+  "immutability_statement": "No se realizarán cambios posteriores basados en TEST.",
+  "pre_test_config_sha256": "86c7f7f6bbf9cff302d69fa840c1157d43d4710106023cbd13170b1e8fa21d98",
+  "experimental_status": "CLOSED"
+}

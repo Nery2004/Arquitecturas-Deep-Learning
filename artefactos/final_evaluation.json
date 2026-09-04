@@ -1,0 +1,356 @@
+{
+  "schema_version": "1.0",
+  "experimental_status": "CLOSED",
+  "test_opened_once": true,
+  "test_evaluation_timestamp": "2026-09-04T17:12:16+00:00",
+  "frozen_config_sha256_before_test": "86c7f7f6bbf9cff302d69fa840c1157d43d4710106023cbd13170b1e8fa21d98",
+  "dataset_fingerprint": "1f659a437a417e08b4274da79bfba8853887b2d4888d235c87e4a5d4ce5cf95d",
+  "processed_fingerprint": "cd496e81ad37906e6da3c4abfdc249da48623a37d807fba1189c4fa198d4b65a",
+  "split_fingerprint": "d938f54ba6258ba09db12412b9bfd7a99d3472fffd68174c53d4a19c2a10f04f",
+  "test_start": "2025-06-03T02:55:10",
+  "test_end": "2025-06-29T23:59:59",
+  "test_days": 26.878344907407406,
+  "monthly_normalization_days": 30.44,
+  "models": {
+    "A": {
+      "test_ap": 0.9191083125552655,
+      "threshold": 0.05548898134596948,
+      "TP": 211,
+      "FP": 209,
+      "TN": 13935,
+      "FN": 11,
+      "precision": 0.5023809523809524,
+      "recall": 0.9504504504504504,
+      "F1": 0.6573208722741434,
+      "economic_cost": 83820
+    },
+    "B": {
+      "test_ap": 0.7150089539708074,
+      "threshold": 0.8253989815711975,
+      "TP": 195,
+      "FP": 450,
+      "TN": 13694,
+      "FN": 27,
+      "precision": 0.3023255813953488,
+      "recall": 0.8783783783783784,
+      "F1": 0.4498269896193771,
+      "economic_cost": 194400
+    },
+    "C": {
+      "test_ap": 0.8248395834861607,
+      "threshold": 0.6682388782501221,
+      "TP": 201,
+      "FP": 331,
+      "TN": 13813,
+      "FN": 21,
+      "precision": 0.37781954887218044,
+      "recall": 0.9054054054054054,
+      "F1": 0.53315649867374,
+      "economic_cost": 147780
+    }
+  },
+  "validation_thresholds": {
+    "A": 0.05548898134596948,
+    "B": 0.8253989815711975,
+    "C": 0.6682388782501221
+  },
+  "candidate_model": "A",
+  "candidate_threshold": 0.05548898134596948,
+  "test_baselines": {
+    "never_block_cost": 932400,
+    "block_everything_cost": 2545920
+  },
+  "savings_vs_A": 0,
+  "monthly_cost_A": 94927.00569136745,
+  "monthly_cost_candidate": 94927.00569136745,
+  "monthly_savings_vs_A": 0.0,
+  "scale_note": "Equivalente mensual dentro de la escala simulada; no extrapolar directamente a 1.4 millones de tarjetas.",
+  "candidate_mechanisms": {
+    "testing_cashout": {
+      "n": 134,
+      "detected": 133,
+      "missed": 1,
+      "recall": 0.9925373134328358,
+      "mean_risk_score": 0.9669106707804064,
+      "median_risk_score": 0.9970990533577102
+    },
+    "channel_takeover": {
+      "n": 75,
+      "detected": 71,
+      "missed": 4,
+      "recall": 0.9466666666666667,
+      "mean_risk_score": 0.8518540488275954,
+      "median_risk_score": 0.9908214986652701
+    },
+    "amount_anomaly": {
+      "n": 13,
+      "detected": 7,
+      "missed": 6,
+      "recall": 0.5384615384615384,
+      "mean_risk_score": 0.17558650787512523,
+      "median_risk_score": 0.06567335221458735
+    }
+  },
+  "representative_false_negatives": [
+    {
+      "transaction_id": "TX_000087462",
+      "target_timestamp": "2025-06-14T15:26:37",
+      "fraud_type": "amount_anomaly",
+      "hard_negative_type": "none",
+      "history_length": 12,
+      "risk_score": 0.00024833871559285425,
+      "threshold": 0.05548898134596948,
+      "amount": 5296.1,
+      "channel": "POS",
+      "merchant": "travel"
+    },
+    {
+      "transaction_id": "TX_000091567",
+      "target_timestamp": "2025-06-21T23:25:57",
+      "fraud_type": "amount_anomaly",
+      "hard_negative_type": "none",
+      "history_length": 12,
+      "risk_score": 0.002176958399057909,
+      "threshold": 0.05548898134596948,
+      "amount": 752.95,
+      "channel": "CONTACTLESS",
+      "merchant": "travel"
+    },
+    {
+      "transaction_id": "TX_000087906",
+      "target_timestamp": "2025-06-15T12:50:48",
+      "fraud_type": "amount_anomaly",
+      "hard_negative_type": "none",
+      "history_length": 12,
+      "risk_score": 0.009791968610758046,
+      "threshold": 0.05548898134596948,
+      "amount": 6181.11,
+      "channel": "POS",
+      "merchant": "retail"
+    },
+    {
+      "transaction_id": "TX_000083935",
+      "target_timestamp": "2025-06-07T19:29:13",
+      "fraud_type": "channel_takeover",
+      "hard_negative_type": "none",
+      "history_length": 12,
+      "risk_score": 0.01497374830134143,
+      "threshold": 0.05548898134596948,
+      "amount": 411.32,
+      "channel": "CONTACTLESS",
+      "merchant": "restaurant"
+    },
+    {
+      "transaction_id": "TX_000084127",
+      "target_timestamp": "2025-06-08T10:23:07",
+      "fraud_type": "channel_takeover",
+      "hard_negative_type": "none",
+      "history_length": 12,
+      "risk_score": 0.022704558098910317,
+      "threshold": 0.05548898134596948,
+      "amount": 112.56,
+      "channel": "ATM",
+      "merchant": "retail"
+    },
+    {
+      "transaction_id": "TX_000084135",
+      "target_timestamp": "2025-06-08T10:41:07",
+      "fraud_type": "channel_takeover",
+      "hard_negative_type": "none",
+      "history_length": 12,
+      "risk_score": 0.030406100224888096,
+      "threshold": 0.05548898134596948,
+      "amount": 336.25,
+      "channel": "CONTACTLESS",
+      "merchant": "entertainment"
+    },
+    {
+      "transaction_id": "TX_000087692",
+      "target_timestamp": "2025-06-14T21:29:16",
+      "fraud_type": "testing_cashout",
+      "hard_negative_type": "none",
+      "history_length": 12,
+      "risk_score": 0.026779976750915955,
+      "threshold": 0.05548898134596948,
+      "amount": 31.85,
+      "channel": "ONLINE",
+      "merchant": "services"
+    },
+    {
+      "transaction_id": "TX_000090111",
+      "target_timestamp": "2025-06-19T12:09:48",
+      "fraud_type": "amount_anomaly",
+      "hard_negative_type": "none",
+      "history_length": 12,
+      "risk_score": 0.0006298133472945713,
+      "threshold": 0.05548898134596948,
+      "amount": 671.78,
+      "channel": "POS",
+      "merchant": "travel"
+    },
+    {
+      "transaction_id": "TX_000081604",
+      "target_timestamp": "2025-06-03T14:15:49",
+      "fraud_type": "amount_anomaly",
+      "hard_negative_type": "none",
+      "history_length": 12,
+      "risk_score": 0.0006964351854175143,
+      "threshold": 0.05548898134596948,
+      "amount": 969.64,
+      "channel": "POS",
+      "merchant": "travel"
+    },
+    {
+      "transaction_id": "TX_000089135",
+      "target_timestamp": "2025-06-17T14:40:13",
+      "fraud_type": "amount_anomaly",
+      "hard_negative_type": "none",
+      "history_length": 12,
+      "risk_score": 0.002741553444290219,
+      "threshold": 0.05548898134596948,
+      "amount": 539.58,
+      "channel": "POS",
+      "merchant": "electronics"
+    }
+  ],
+  "representative_false_positives": [
+    {
+      "transaction_id": "TX_000083367",
+      "target_timestamp": "2025-06-06T17:52:45",
+      "fraud_type": "legitimate",
+      "hard_negative_type": "legitimate_micro_purchases",
+      "history_length": 12,
+      "risk_score": 0.08615520521799033,
+      "threshold": 0.05548898134596948,
+      "amount": 14.88,
+      "channel": "CONTACTLESS",
+      "merchant": "services"
+    },
+    {
+      "transaction_id": "TX_000088985",
+      "target_timestamp": "2025-06-17T10:56:43",
+      "fraud_type": "legitimate",
+      "hard_negative_type": "legitimate_micro_purchases",
+      "history_length": 12,
+      "risk_score": 0.8854314580414515,
+      "threshold": 0.05548898134596948,
+      "amount": 7.37,
+      "channel": "CONTACTLESS",
+      "merchant": "services"
+    },
+    {
+      "transaction_id": "TX_000085776",
+      "target_timestamp": "2025-06-11T12:14:51",
+      "fraud_type": "legitimate",
+      "hard_negative_type": "legitimate_micro_purchases",
+      "history_length": 12,
+      "risk_score": 0.9948007363184652,
+      "threshold": 0.05548898134596948,
+      "amount": 11.04,
+      "channel": "ONLINE",
+      "merchant": "services"
+    },
+    {
+      "transaction_id": "TX_000084308",
+      "target_timestamp": "2025-06-08T15:52:25",
+      "fraud_type": "legitimate",
+      "hard_negative_type": "legitimate_shopping_spree",
+      "history_length": 12,
+      "risk_score": 0.056849414093523315,
+      "threshold": 0.05548898134596948,
+      "amount": 259.28,
+      "channel": "CONTACTLESS",
+      "merchant": "retail"
+    },
+    {
+      "transaction_id": "TX_000093093",
+      "target_timestamp": "2025-06-24T20:27:53",
+      "fraud_type": "legitimate",
+      "hard_negative_type": "legitimate_shopping_spree",
+      "history_length": 12,
+      "risk_score": 0.08739204882462574,
+      "threshold": 0.05548898134596948,
+      "amount": 30.17,
+      "channel": "CONTACTLESS",
+      "merchant": "retail"
+    },
+    {
+      "transaction_id": "TX_000089104",
+      "target_timestamp": "2025-06-17T14:04:02",
+      "fraud_type": "legitimate",
+      "hard_negative_type": "legitimate_shopping_spree",
+      "history_length": 12,
+      "risk_score": 0.23026062614387777,
+      "threshold": 0.05548898134596948,
+      "amount": 49.37,
+      "channel": "CONTACTLESS",
+      "merchant": "restaurant"
+    },
+    {
+      "transaction_id": "TX_000090265",
+      "target_timestamp": "2025-06-19T15:35:08",
+      "fraud_type": "legitimate",
+      "hard_negative_type": "legitimate_trip",
+      "history_length": 12,
+      "risk_score": 0.12784504581413775,
+      "threshold": 0.05548898134596948,
+      "amount": 840.54,
+      "channel": "ATM",
+      "merchant": "restaurant"
+    },
+    {
+      "transaction_id": "TX_000085255",
+      "target_timestamp": "2025-06-10T13:06:38",
+      "fraud_type": "legitimate",
+      "hard_negative_type": "legitimate_trip",
+      "history_length": 12,
+      "risk_score": 0.44631899885716236,
+      "threshold": 0.05548898134596948,
+      "amount": 208.91,
+      "channel": "ATM",
+      "merchant": "restaurant"
+    },
+    {
+      "transaction_id": "TX_000091077",
+      "target_timestamp": "2025-06-21T08:41:12",
+      "fraud_type": "legitimate",
+      "hard_negative_type": "legitimate_trip",
+      "history_length": 12,
+      "risk_score": 0.9469922634151426,
+      "threshold": 0.05548898134596948,
+      "amount": 142.63,
+      "channel": "ATM",
+      "merchant": "travel"
+    },
+    {
+      "transaction_id": "TX_000092894",
+      "target_timestamp": "2025-06-24T15:04:21",
+      "fraud_type": "legitimate",
+      "hard_negative_type": "none",
+      "history_length": 12,
+      "risk_score": 0.05559571765515023,
+      "threshold": 0.05548898134596948,
+      "amount": 6576.63,
+      "channel": "ATM",
+      "merchant": "electronics"
+    }
+  ],
+  "figures": [
+    "figures/test_pr_curves_abc.png",
+    "figures/test_economic_cost_abc.png",
+    "figures/test_confusion_matrix_final_candidate.png",
+    "figures/test_recall_by_mechanism_candidate.png",
+    "figures/monthly_economic_comparison.png"
+  ],
+  "execution_incidents": [
+    {
+      "stage": "initial TEST scoring attempt",
+      "impact": "No metrics or model decisions were produced or changed.",
+      "detail": "The PyTorch environment could not deserialize Model A because it uses older NumPy/scikit-learn versions.",
+      "resolution": "Model A inference ran under its frozen sklearn 1.9/NumPy 2.4 environment; B/C ran under their frozen PyTorch environment."
+    }
+  ],
+  "recommendation": "CONSERVAR",
+  "recommendation_reason": "A fue el candidato prefijado y las alternativas secuenciales no redujeron el costo frente a A.",
+  "integrity_statement": "El conjunto TEST fue utilizado únicamente después de congelar modelos, selección del candidato y thresholds. Ninguna decisión de modelado o threshold fue modificada a partir de sus resultados."
+}

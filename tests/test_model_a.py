@@ -61,7 +61,8 @@ class ModelAAuditTests(unittest.TestCase):
 
     def test_a11_test_not_evaluated(self) -> None:
         self.assertFalse(self.metadata["test_evaluated"])
-        self.assertFalse(Path("artefactos/model_a/test_scores.csv").exists())
+        final=Path("artefactos/final_evaluation.json")
+        self.assertEqual(Path("artefactos/model_a/test_scores.csv").exists(),final.exists())
 
     def test_a12_reproducible(self) -> None:
         self.assertLessEqual(self.metadata["reproducibility_absolute_difference"], 1e-12)

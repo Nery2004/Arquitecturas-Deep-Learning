@@ -316,3 +316,34 @@ Lista de control actual:
 ## Uso de inteligencia artificial
 
 Se utilizó inteligencia artificial como apoyo para estructurar el proyecto, discutir alternativas, apoyar la implementación, revisar código y mejorar la documentación. Los integrantes son responsables de revisar y poder explicar las decisiones experimentales, comprobar el funcionamiento del código y validar los resultados y su interpretación. La IA es una herramienta de apoyo, no sustituye el criterio ni la responsabilidad académica del equipo.
+## Umbral de decisión
+
+Los puntajes continuos se convirtieron en decisiones mediante el costo centralizado `FN × Q4,200 + FP × Q180`. Cada umbral se eligió exclusivamente en VALIDATION evaluando todos los scores únicos; ante empates exactos se usa el umbral más alto. La simplificación representa daño esperado académico, no un ahorro individual garantizado de Q4,200 por cada verdadero positivo.
+
+| Modelo | Threshold VALIDATION | FP | FN | Precision | Recall | F1 | Costo |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| A | 0.055489 | 212 | 11 | 0.5058 | 0.9518 | 0.6606 | Q84,360 |
+| B | 0.825399 | 406 | 41 | 0.3153 | 0.8202 | 0.4555 | Q245,280 |
+| C | 0.668239 | 333 | 27 | 0.3764 | 0.8816 | 0.5276 | Q173,340 |
+
+Antes de abrir TEST se congeló A con threshold `0.05548898134596948`: fue el mejor tanto en AP como en costo de VALIDATION. B probó que el orden contiene señal y C mejoró B, pero ninguno justificó desplazar a A. La evidencia está en `artefactos/final_decision_config.json`.
+
+## Evaluación final
+
+Los tres checkpoints se evaluaron una sola vez en TEST con sus thresholds congelados.
+
+| Modelo | Test AP | Threshold | Precision | Recall | F1 | TP | FP | TN | FN | Costo |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| A | 0.9191 | 0.055489 | 0.5024 | 0.9505 | 0.6573 | 211 | 209 | 13,935 | 11 | Q83,820 |
+| B | 0.7150 | 0.825399 | 0.3023 | 0.8784 | 0.4498 | 195 | 450 | 13,694 | 27 | Q194,400 |
+| C | 0.8248 | 0.668239 | 0.3778 | 0.9054 | 0.5332 | 201 | 331 | 13,813 | 21 | Q147,780 |
+
+## Impacto económico
+
+En TEST, nunca bloquear cuesta Q932,400 y bloquear todo Q2,545,920. El candidato A cuesta Q83,820. Como el candidato final es el propio A, el ahorro frente a A es Q0; B y C agregarían Q110,580 y Q63,960 de costo, respectivamente. TEST cubre 26.8783 días: normalizando por 30.44 días, A cuesta Q94,927.01 por mes en la escala simulada. Esta cifra no debe extrapolarse directamente a 1.4 millones de tarjetas.
+
+## Limitaciones observadas
+
+A detectó 133/134 fraudes `testing_cashout` (99.25%), 71/75 `channel_takeover` (94.67%) y solo 7/13 `amount_anomaly` (53.85%). Seis de sus once falsos negativos pertenecen a este último mecanismo. Los falsos positivos incluyen microcompras, viajes, rachas de compras y una compra grande legítima; no encontramos un patrón único que explique todos. La recomendación preliminar es **CONSERVAR** A: las secuencias contienen información temporal real, pero en este experimento no mejoraron AP ni costo operativo frente al modelo agregado.
+
+La recomendación cambiaría si una réplica temporal mostrara ahorro sostenido de B/C frente a A, si el costo o recall de un mecanismo crítico cruzara límites operativos acordados, si los falsos positivos fueran inaceptables, o si apareciera drift temporal. El modelado queda cerrado tras `artefactos/final_evaluation.json`.
