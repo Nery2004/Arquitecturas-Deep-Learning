@@ -110,6 +110,7 @@ python3 -m json.tool artefactos/final_candidate.json
 .venv/bin/python -m pytest -q --ignore=tests/test_model_a.py
 python3 -m pytest -q tests/test_model_a.py
 .venv/bin/jupyter nbconvert --to notebook --execute --inplace proyecto1_apellidos.ipynb
+.venv/bin/python informe/build_report.py
 ```
 
 El notebook carga JSON/CSV/PNG ya congelados; no entrena ni vuelve a evaluar TEST.
