@@ -34,7 +34,54 @@ Fingerprint SHA-256 del Dataset Version 1:
 
 Esta versión se congeló antes del entrenamiento. Los mecanismos y la configuración principal no se modificarán después para favorecer al Modelo A, B o C. Un cambio solo será válido ante un bug real y dará lugar a una versión nueva con su motivo y fingerprint documentados.
 
-Todavía no existen TRAIN, VALIDATION o TEST. El generador crea una única línea temporal completa y desconoce las futuras fronteras.
+El generador creó una única línea temporal completa sin conocer fronteras. Los splits descritos a continuación se definieron después y no modifican Dataset Version 1.
+
+## Partición temporal
+
+La pertenencia la determina el timestamp de la transacción objetivo. No se hizo shuffle ni estratificación:
+
+| Split | Inicio | Fin | Targets | Fraudes | Tasa |
+|---|---|---|---:|---:|---:|
+| TRAIN | 2025-01-01 04:00:48 | 2025-05-07 06:01:10 | 64,236 | 1,110 | 1.7280% |
+| VALIDATION | 2025-05-07 06:10:15 | 2025-06-03 02:43:40 | 14,365 | 228 | 1.5872% |
+| TEST | 2025-06-03 02:55:10 | 2025-06-29 23:59:59 | 14,366 | 222 | 1.5453% |
+
+Las fronteras conservan completo cada timestamp y cumplen `max(TRAIN) < min(VALIDATION) < max(VALIDATION) < min(TEST)`. Si una tarjeta tiene operaciones con el mismo timestamp, `transaction_id` actúa como desempate determinista. Un objetivo de VALIDATION o TEST puede usar operaciones anteriores de splits previos como historia observable; sus etiquetas nunca entran como features.
+
+El split quedó congelado en `data/processed/split_config.json` y todos los modelos deberán cargarlo mediante la misma función.
+
+## Preprocessing
+
+Cada ejemplo es una transacción objetivo con al menos una operación previa. Se excluye únicamente la primera transacción de cada tarjeta: 2,800 filas. El universo común contiene 92,967 ejemplos en `data/processed/example_index.csv`.
+
+La operación actual se representa por monto, distancia, internacionalidad, hora y día cíclicos, tiempo desde la operación anterior, comercio y canal. El Modelo A añadirá 23 agregados causales: estadísticas históricas personales, razones de monto y distancia, frecuencias y flags de canal/comercio inusual, conteos de 1h/6h/24h/7d y resúmenes de las últimas 24 horas. No recibe posiciones anteriores ni una secuencia disfrazada.
+
+Para B y C, `history_sequence` contiene hasta las últimas 12 operaciones **anteriores**, en orden ascendente. Cada evento tiene ocho numéricas (`amount`, distancia, internacionalidad, hora/día cíclicos y tiempo desde el evento anterior) y dos categóricas (comercio y canal). Se usa left padding: `PAD=0`, `UNK=1`, categorías reales desde 2, junto con máscara y longitud válida. La operación actual permanece separada. Cambiar posteriormente 12 por 3 no requiere reconstruir la definición del target.
+
+Los tres escaladores aplican imputación por mediana y estandarización; todos se ajustaron exclusivamente con TRAIN. El delta desconocido del primer evento histórico y resúmenes 24h sin eventos se imputan con medianas TRAIN. Conteos, diversidad y flags tienen valores conceptuales de cero. Los vocabularios también se aprendieron solo de TRAIN.
+
+## Controles contra fuga de información
+
+- Fingerprint del CSV verificado antes de procesar.
+- Split estricto por timestamp del target, con fronteras congeladas.
+- Historia limitada a la misma tarjeta y anterior al target; `transaction_id` resuelve empates.
+- Agregados recalculados sobre historia anterior en muestras de control.
+- `is_fraud`, `fraud_type`, `fraud_stage`, `hard_negative_type`, perfil e IDs excluidos de inputs.
+- Encoders, imputadores y escaladores ajustados solo con TRAIN.
+- A, B y C comparten `example_index` y `y`.
+- Secuencia ascendente, left padding y máscara comprobados automáticamente.
+- TEST fue transformado con parámetros congelados, pero no se usó para decisiones.
+
+## Datos procesados
+
+- `data/processed/example_index.csv`: fuente de verdad de targets, splits y metadata de análisis.
+- `data/processed/aggregate_features_raw.csv`: agregados causales sin escalar para auditoría.
+- `data/processed/model_inputs_{train,validation,test}.npz`: entradas transformadas comunes.
+- `data/processed/split_config.json`: fronteras y fingerprint fuente.
+- `data/processed/processed_metadata.json`: definición, EDA, validaciones y fingerprint procesado.
+- `artefactos/preprocessing/*.json`: scalers y vocabularios TRAIN-only.
+
+Para reproducir: `python3 -m src.preprocessing`. El fingerprint procesado es `cd496e81ad37906e6da3c4abfdc249da48623a37d807fba1189c4fa198d4b65a` y coincidió en dos ejecuciones consecutivas.
 
 ## Pregunta de investigación
 
@@ -193,7 +240,7 @@ El nombre del notebook conserva `apellidos` como marcador visible hasta conocer 
 
 ## Estado y siguientes etapas
 
-Etapas 0 a 3 completadas. Quedan pendientes el preprocessing causal, el split estrictamente temporal y, posteriormente, el entrenamiento. El dataset permanece crudo: no hay ventanas agregadas, secuencias finales, normalización ni balanceo.
+Etapas 0 a 5 completadas. Los datos están preparados para iniciar el Modelo A. Queda pendiente el entrenamiento y toda evaluación predictiva; no se aplicó balanceo ni se entrenó ningún modelo.
 
 Lista de control actual:
 

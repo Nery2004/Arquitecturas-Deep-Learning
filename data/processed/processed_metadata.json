@@ -1,0 +1,200 @@
+{
+  "preprocessing_version": "1.0.0",
+  "dataset_source_fingerprint": "1f659a437a417e08b4274da79bfba8853887b2d4888d235c87e4a5d4ce5cf95d",
+  "processed_fingerprint": "cd496e81ad37906e6da3c4abfdc249da48623a37d807fba1189c4fa198d4b65a",
+  "min_history": 1,
+  "max_history": 12,
+  "excluded_first_transactions": 2800,
+  "n_examples": 92967,
+  "split_summary": {
+    "train": {
+      "start": "2025-01-01T04:00:48",
+      "end": "2025-05-07T06:01:10",
+      "n": 64236,
+      "frauds": 1110,
+      "fraud_rate": 0.01728002988978143
+    },
+    "validation": {
+      "start": "2025-05-07T06:10:15",
+      "end": "2025-06-03T02:43:40",
+      "n": 14365,
+      "frauds": 228,
+      "fraud_rate": 0.015871910894535327
+    },
+    "test": {
+      "start": "2025-06-03T02:55:10",
+      "end": "2025-06-29T23:59:59",
+      "n": 14366,
+      "frauds": 222,
+      "fraud_rate": 0.015453153278574413
+    }
+  },
+  "fraud_by_mechanism_and_split": {
+    "testing_cashout": {
+      "train": 683,
+      "validation": 123,
+      "test": 134
+    },
+    "channel_takeover": {
+      "train": 373,
+      "validation": 90,
+      "test": 75
+    },
+    "amount_anomaly": {
+      "train": 54,
+      "validation": 15,
+      "test": 13
+    }
+  },
+  "aggregate_features": [
+    "historical_mean_amount",
+    "historical_std_amount",
+    "historical_max_amount",
+    "historical_transaction_count",
+    "current_vs_mean_amount_ratio",
+    "amount_zscore_personal",
+    "historical_mean_distance",
+    "distance_ratio_to_typical",
+    "current_channel_frequency_history",
+    "current_channel_is_unusual",
+    "current_merchant_frequency_history",
+    "current_merchant_is_unusual",
+    "tx_count_1h",
+    "tx_count_6h",
+    "tx_count_24h",
+    "tx_count_7d",
+    "amount_mean_24h",
+    "amount_max_24h",
+    "amount_sum_24h",
+    "merchant_diversity_24h",
+    "channel_diversity_24h",
+    "international_count_24h",
+    "has_short_history"
+  ],
+  "current_numeric_features": [
+    "current_amount",
+    "current_distance_from_home_km",
+    "current_is_international",
+    "current_hour_sin",
+    "current_hour_cos",
+    "current_day_sin",
+    "current_day_cos",
+    "time_since_previous_hours"
+  ],
+  "current_categorical_features": [
+    "current_merchant_category",
+    "current_channel"
+  ],
+  "sequence_numeric_features": [
+    "amount",
+    "distance_from_home_km",
+    "is_international",
+    "hour_sin",
+    "hour_cos",
+    "day_sin",
+    "day_cos",
+    "time_since_previous_hours"
+  ],
+  "sequence_categorical_features": [
+    "merchant_category",
+    "channel"
+  ],
+  "sequence_shape_per_example": [
+    12,
+    8
+  ],
+  "excluded_columns": [
+    "card_id",
+    "customer_profile",
+    "fraud_stage",
+    "fraud_type",
+    "hard_negative_type",
+    "is_fraud",
+    "transaction_id"
+  ],
+  "scalers": [
+    "artefactos/preprocessing/aggregate_scaler.json",
+    "artefactos/preprocessing/current_scaler.json",
+    "artefactos/preprocessing/sequence_scaler.json"
+  ],
+  "vocabularies": {
+    "merchant_category": {
+      "PAD": 0,
+      "UNK": 1,
+      "electronics": 2,
+      "entertainment": 3,
+      "fuel": 4,
+      "grocery": 5,
+      "other": 6,
+      "pharmacy": 7,
+      "restaurant": 8,
+      "retail": 9,
+      "services": 10,
+      "travel": 11
+    },
+    "channel": {
+      "PAD": 0,
+      "UNK": 1,
+      "ATM": 2,
+      "CONTACTLESS": 3,
+      "ONLINE": 4,
+      "POS": 5
+    }
+  },
+  "fit_split": "train",
+  "padding": "left/PAD=0/UNK=1",
+  "history_distribution": {
+    "mean_total": 18.256037088429228,
+    "median_total": 17.0,
+    "min_total": 1,
+    "max_total": 67,
+    "pct_at_least_3": 0.9397635720201792,
+    "pct_at_least_6": 0.849408930050448,
+    "pct_at_least_12": 0.668710402615982
+  },
+  "validation": {
+    "tests_passed": 12,
+    "sampled_aggregate_and_sequence_checks": [
+      "EX_000000001",
+      "EX_000003874",
+      "EX_000007748",
+      "EX_000011621",
+      "EX_000015495",
+      "EX_000019368",
+      "EX_000023242",
+      "EX_000027116",
+      "EX_000030989",
+      "EX_000034863",
+      "EX_000038736",
+      "EX_000042610",
+      "EX_000046484",
+      "EX_000050357",
+      "EX_000054231",
+      "EX_000058104",
+      "EX_000061978",
+      "EX_000065851",
+      "EX_000069725",
+      "EX_000073599",
+      "EX_000077472",
+      "EX_000081346",
+      "EX_000085219",
+      "EX_000089093",
+      "EX_000092967"
+    ],
+    "strict_temporal_boundaries": true,
+    "common_example_universe": true,
+    "history_only_before_target": true,
+    "train_only_fit": true,
+    "padding_and_mask_valid": true,
+    "forbidden_columns_absent": true
+  },
+  "eda_figures": [
+    "figures/eda_temporal_activity.png",
+    "figures/eda_fraud_mechanisms.png",
+    "figures/eda_history_length.png",
+    "figures/eda_temporal_split.png",
+    "figures/eda_amount_by_mechanism.png",
+    "figures/eda_channel_by_label.png"
+  ],
+  "generated_at_utc": "2026-09-04T15:49:02+00:00"
+}

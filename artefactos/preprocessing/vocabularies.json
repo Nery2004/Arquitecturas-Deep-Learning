@@ -1,0 +1,24 @@
+{
+  "merchant_category": {
+    "PAD": 0,
+    "UNK": 1,
+    "electronics": 2,
+    "entertainment": 3,
+    "fuel": 4,
+    "grocery": 5,
+    "other": 6,
+    "pharmacy": 7,
+    "restaurant": 8,
+    "retail": 9,
+    "services": 10,
+    "travel": 11
+  },
+  "channel": {
+    "PAD": 0,
+    "UNK": 1,
+    "ATM": 2,
+    "CONTACTLESS": 3,
+    "ONLINE": 4,
+    "POS": 5
+  }
+}

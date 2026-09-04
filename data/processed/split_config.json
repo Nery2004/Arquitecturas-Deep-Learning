@@ -1,0 +1,15 @@
+{
+  "dataset_fingerprint": "1f659a437a417e08b4274da79bfba8853887b2d4888d235c87e4a5d4ce5cf95d",
+  "percentages": [
+    70,
+    15,
+    15
+  ],
+  "assignment": "target timestamp; complete timestamp blocks",
+  "train_start": "2025-01-01T04:00:48",
+  "train_end": "2025-05-07T06:01:10",
+  "validation_start": "2025-05-07T06:10:15",
+  "validation_end": "2025-06-03T02:43:40",
+  "test_start": "2025-06-03T02:55:10",
+  "test_end": "2025-06-29T23:59:59"
+}
