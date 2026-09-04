@@ -1,0 +1,167 @@
+[
+  {
+    "feature": "current_distance_from_home_km",
+    "importance_mean": 0.2500815580699847,
+    "importance_std": 0.020352533247915118
+  },
+  {
+    "feature": "time_since_previous_hours",
+    "importance_mean": 0.2120378217975738,
+    "importance_std": 0.002211486565611709
+  },
+  {
+    "feature": "current_merchant_category",
+    "importance_mean": 0.20942596396687982,
+    "importance_std": 0.00799312344134953
+  },
+  {
+    "feature": "current_amount",
+    "importance_mean": 0.1402033037297449,
+    "importance_std": 0.011517288768859582
+  },
+  {
+    "feature": "current_channel",
+    "importance_mean": 0.05509542643868862,
+    "importance_std": 0.014382462671549395
+  },
+  {
+    "feature": "current_channel_frequency_history",
+    "importance_mean": 0.029796943973747214,
+    "importance_std": 0.002029073996984928
+  },
+  {
+    "feature": "current_vs_mean_amount_ratio",
+    "importance_mean": 0.013121018477174395,
+    "importance_std": 0.0013930723784177348
+  },
+  {
+    "feature": "tx_count_1h",
+    "importance_mean": 0.011289404863601601,
+    "importance_std": 0.00018497058634203714
+  },
+  {
+    "feature": "amount_mean_24h",
+    "importance_mean": 0.009647739325550445,
+    "importance_std": 0.0005596058464265211
+  },
+  {
+    "feature": "distance_ratio_to_typical",
+    "importance_mean": 0.007945400643620556,
+    "importance_std": 0.0002774857619747434
+  },
+  {
+    "feature": "current_is_international",
+    "importance_mean": 0.007795025329825196,
+    "importance_std": 0.00015301732063615077
+  },
+  {
+    "feature": "merchant_diversity_24h",
+    "importance_mean": 0.006538801984299569,
+    "importance_std": 0.0010084746086186584
+  },
+  {
+    "feature": "international_count_24h",
+    "importance_mean": 0.006009112257779854,
+    "importance_std": 0.0001710447181963049
+  },
+  {
+    "feature": "current_merchant_frequency_history",
+    "importance_mean": 0.005255636306166507,
+    "importance_std": 0.0016353967419975436
+  },
+  {
+    "feature": "historical_mean_distance",
+    "importance_mean": 0.003983270444113322,
+    "importance_std": 0.001047384848812049
+  },
+  {
+    "feature": "tx_count_6h",
+    "importance_mean": 0.0036072681304088285,
+    "importance_std": 0.0006461740972345765
+  },
+  {
+    "feature": "historical_max_amount",
+    "importance_mean": 0.003481184747822256,
+    "importance_std": 0.0012447854511388702
+  },
+  {
+    "feature": "amount_zscore_personal",
+    "importance_mean": 0.0027779656740737346,
+    "importance_std": 0.0012642529755408892
+  },
+  {
+    "feature": "tx_count_24h",
+    "importance_mean": 0.0011436054828076747,
+    "importance_std": 0.00024817567924706143
+  },
+  {
+    "feature": "current_day_sin",
+    "importance_mean": 0.0010673171390497282,
+    "importance_std": 0.0008520441057406599
+  },
+  {
+    "feature": "channel_diversity_24h",
+    "importance_mean": 0.001044711536928089,
+    "importance_std": 0.00013980260520097653
+  },
+  {
+    "feature": "historical_std_amount",
+    "importance_mean": 0.0007288472579550787,
+    "importance_std": 0.0004100505781523794
+  },
+  {
+    "feature": "current_hour_sin",
+    "importance_mean": 0.0005190791987092677,
+    "importance_std": 0.00022331316573757196
+  },
+  {
+    "feature": "historical_mean_amount",
+    "importance_mean": 0.0002463890668236897,
+    "importance_std": 0.00030890142997053193
+  },
+  {
+    "feature": "amount_max_24h",
+    "importance_mean": 0.00021032716182178834,
+    "importance_std": 0.0003760276729757225
+  },
+  {
+    "feature": "current_channel_is_unusual",
+    "importance_mean": 0.0,
+    "importance_std": 0.0
+  },
+  {
+    "feature": "current_merchant_is_unusual",
+    "importance_mean": 0.0,
+    "importance_std": 0.0
+  },
+  {
+    "feature": "has_short_history",
+    "importance_mean": 0.0,
+    "importance_std": 0.0
+  },
+  {
+    "feature": "current_day_cos",
+    "importance_mean": -6.564076964458525e-06,
+    "importance_std": 0.0003322804545640317
+  },
+  {
+    "feature": "tx_count_7d",
+    "importance_mean": -0.0005253571529106882,
+    "importance_std": 0.0011639174514468974
+  },
+  {
+    "feature": "amount_sum_24h",
+    "importance_mean": -0.0008565097336122504,
+    "importance_std": 0.00037240886996613463
+  },
+  {
+    "feature": "current_hour_cos",
+    "importance_mean": -0.0009204638987897473,
+    "importance_std": 0.002094986721342555
+  },
+  {
+    "feature": "historical_transaction_count",
+    "importance_mean": -0.0012110862321844291,
+    "importance_std": 0.000634473963332771
+  }
+]

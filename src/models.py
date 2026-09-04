@@ -1,7 +1,14 @@
-"""Definiciones futuras de los modelos A, B y C.
+"""Definiciones de modelos; B y C permanecen pendientes."""
 
-No contiene arquitecturas ni entrenamiento todavía. A será el baseline sin
-orden, B la GRU y C el modelo híbrido descritos en el diseño experimental.
-"""
+from typing import Any
 
-# Intencionalmente sin implementación en las etapas 0 y 1.
+from sklearn.ensemble import HistGradientBoostingClassifier
+
+
+def create_model_a(parameters: dict[str, Any]) -> HistGradientBoostingClassifier:
+    """Crea el candidato no lineal sin early stopping interno aleatorio."""
+    return HistGradientBoostingClassifier(**parameters, early_stopping=False,
+                                          categorical_features=[8, 9])
+
+
+# Las arquitecturas secuencial B e híbrida C no se implementan en esta etapa.

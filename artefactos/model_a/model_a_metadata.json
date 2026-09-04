@@ -1,0 +1,207 @@
+{
+  "model_name": "MODEL_A_CANDIDATE",
+  "algorithm": "HistGradientBoostingClassifier",
+  "candidate_id": "hgb_02",
+  "parameters": {
+    "learning_rate": 0.08,
+    "max_iter": 180,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 40,
+    "l2_regularization": 1.0,
+    "random_state": 42
+  },
+  "random_seed": 42,
+  "dataset_fingerprint": "1f659a437a417e08b4274da79bfba8853887b2d4888d235c87e4a5d4ce5cf95d",
+  "processed_dataset_fingerprint": "cd496e81ad37906e6da3c4abfdc249da48623a37d807fba1189c4fa198d4b65a",
+  "split_fingerprint": "d938f54ba6258ba09db12412b9bfd7a99d3472fffd68174c53d4a19c2a10f04f",
+  "training_split": "TRAIN",
+  "selection_split": "VALIDATION",
+  "test_evaluated": false,
+  "n_train": 64236,
+  "n_validation": 14365,
+  "n_negative_train": 63126,
+  "n_positive_train": 1110,
+  "train_fraud_rate": 0.01728002988978143,
+  "validation_fraud_rate": 0.015871910894535327,
+  "class_weights_from_train": {
+    "0": 0.5087919399296644,
+    "1": 28.935135135135134
+  },
+  "feature_names": [
+    "current_amount",
+    "current_distance_from_home_km",
+    "current_is_international",
+    "current_hour_sin",
+    "current_hour_cos",
+    "current_day_sin",
+    "current_day_cos",
+    "time_since_previous_hours",
+    "current_merchant_category",
+    "current_channel",
+    "historical_mean_amount",
+    "historical_std_amount",
+    "historical_max_amount",
+    "historical_transaction_count",
+    "current_vs_mean_amount_ratio",
+    "amount_zscore_personal",
+    "historical_mean_distance",
+    "distance_ratio_to_typical",
+    "current_channel_frequency_history",
+    "current_channel_is_unusual",
+    "current_merchant_frequency_history",
+    "current_merchant_is_unusual",
+    "tx_count_1h",
+    "tx_count_6h",
+    "tx_count_24h",
+    "tx_count_7d",
+    "amount_mean_24h",
+    "amount_max_24h",
+    "amount_sum_24h",
+    "merchant_diversity_24h",
+    "channel_diversity_24h",
+    "international_count_24h",
+    "has_short_history"
+  ],
+  "n_features": 33,
+  "primary_metric": "AUC-PR / Average Precision (AP)",
+  "train_ap": 0.9999695842196737,
+  "validation_ap": 0.9100214741075414,
+  "train_validation_gap": 0.08994811011213233,
+  "reproducibility_validation_ap_run_1": 0.9100214741075414,
+  "reproducibility_validation_ap_run_2": 0.9100214741075414,
+  "reproducibility_absolute_difference": 0.0,
+  "selection_rule": "highest validation AP; prefer earlier/simpler candidate within 0.001",
+  "validation_fraud_score_summary": {
+    "testing_cashout": {
+      "n": 123,
+      "mean_risk_score": 0.9862476450471412,
+      "median_risk_score": 0.9984956459647154,
+      "q90_risk_score": 0.9997698251001593
+    },
+    "channel_takeover": {
+      "n": 90,
+      "mean_risk_score": 0.820875168635547,
+      "median_risk_score": 0.9887886618277862,
+      "q90_risk_score": 0.9993916899666891
+    },
+    "amount_anomaly": {
+      "n": 15,
+      "mean_risk_score": 0.17271904486940376,
+      "median_risk_score": 0.04089950969484153,
+      "q90_risk_score": 0.4678958526934572
+    }
+  },
+  "validation_hard_negative_score_summary": {
+    "legitimate_large_purchase": {
+      "n": 25,
+      "mean_risk_score": 0.03666724414422824,
+      "median_risk_score": 0.011801447721842832,
+      "q90_risk_score": 0.1105363929037994
+    },
+    "legitimate_micro_purchases": {
+      "n": 80,
+      "mean_risk_score": 0.15471651109585946,
+      "median_risk_score": 0.0020975663056886284,
+      "q90_risk_score": 0.8232786257103234
+    },
+    "legitimate_shopping_spree": {
+      "n": 105,
+      "mean_risk_score": 0.016807607736533843,
+      "median_risk_score": 0.0014191768836130264,
+      "q90_risk_score": 0.026375249202319193
+    },
+    "legitimate_trip": {
+      "n": 75,
+      "mean_risk_score": 0.1194585957360709,
+      "median_risk_score": 0.0015624591223839842,
+      "q90_risk_score": 0.49868907161177284
+    }
+  },
+  "top_permutation_importance": [
+    {
+      "feature": "current_distance_from_home_km",
+      "importance_mean": 0.2500815580699847,
+      "importance_std": 0.020352533247915118
+    },
+    {
+      "feature": "time_since_previous_hours",
+      "importance_mean": 0.2120378217975738,
+      "importance_std": 0.002211486565611709
+    },
+    {
+      "feature": "current_merchant_category",
+      "importance_mean": 0.20942596396687982,
+      "importance_std": 0.00799312344134953
+    },
+    {
+      "feature": "current_amount",
+      "importance_mean": 0.1402033037297449,
+      "importance_std": 0.011517288768859582
+    },
+    {
+      "feature": "current_channel",
+      "importance_mean": 0.05509542643868862,
+      "importance_std": 0.014382462671549395
+    },
+    {
+      "feature": "current_channel_frequency_history",
+      "importance_mean": 0.029796943973747214,
+      "importance_std": 0.002029073996984928
+    },
+    {
+      "feature": "current_vs_mean_amount_ratio",
+      "importance_mean": 0.013121018477174395,
+      "importance_std": 0.0013930723784177348
+    },
+    {
+      "feature": "tx_count_1h",
+      "importance_mean": 0.011289404863601601,
+      "importance_std": 0.00018497058634203714
+    },
+    {
+      "feature": "amount_mean_24h",
+      "importance_mean": 0.009647739325550445,
+      "importance_std": 0.0005596058464265211
+    },
+    {
+      "feature": "distance_ratio_to_typical",
+      "importance_mean": 0.007945400643620556,
+      "importance_std": 0.0002774857619747434
+    },
+    {
+      "feature": "current_is_international",
+      "importance_mean": 0.007795025329825196,
+      "importance_std": 0.00015301732063615077
+    },
+    {
+      "feature": "merchant_diversity_24h",
+      "importance_mean": 0.006538801984299569,
+      "importance_std": 0.0010084746086186584
+    },
+    {
+      "feature": "international_count_24h",
+      "importance_mean": 0.006009112257779854,
+      "importance_std": 0.0001710447181963049
+    },
+    {
+      "feature": "current_merchant_frequency_history",
+      "importance_mean": 0.005255636306166507,
+      "importance_std": 0.0016353967419975436
+    },
+    {
+      "feature": "historical_mean_distance",
+      "importance_mean": 0.003983270444113322,
+      "importance_std": 0.001047384848812049
+    }
+  ],
+  "model_fingerprint_sha256": "47a879faa8f4abf4472486584efd6ebf304397dbdb7e87a20ee8ca61f06e16eb",
+  "software_versions": {
+    "python": "3.14.2",
+    "numpy": "2.4.4",
+    "pandas": "not installed",
+    "scikit-learn": "1.9.0",
+    "joblib": "1.6.0",
+    "platform": "macOS-26.6.2-x86_64-i386-64bit-Mach-O"
+  },
+  "created_at_utc": "2026-09-04T16:15:40+00:00"
+}

@@ -83,6 +83,16 @@ Los tres escaladores aplican imputación por mediana y estandarización; todos s
 
 Para reproducir: `python3 -m src.preprocessing`. El fingerprint procesado es `cd496e81ad37906e6da3c4abfdc249da48623a37d807fba1189c4fa198d4b65a` y coincidió en dos ejecuciones consecutivas.
 
+## Modelo A — Baseline sin orden
+
+Antes de probar una red recurrente medimos qué puede lograrse sin leer el orden completo. Modelo A recibe las 8 variables numéricas y 2 categóricas de la operación actual, más los 23 agregados históricos ya congelados. No recibe secuencias, posiciones, IDs ni metadata del generador.
+
+Se comparó una regresión logística de sanity check con cinco configuraciones moderadas de `HistGradientBoostingClassifier`. El desbalance se trató mediante pesos calculados solo desde TRAIN: 0.50879 para legítimas y 28.93514 para fraude. No hubo resampling. La métrica común quedó fijada como **AUC-PR / Average Precision (AP)** mediante `average_precision_score`.
+
+El candidato congelado es `hgb_02`: learning rate 0.08, 180 iteraciones, 31 hojas máximas, mínimo 40 observaciones por hoja y regularización L2 de 1.0. Obtuvo AP 0.999970 en TRAIN y 0.910021 en VALIDATION. El gap de 0.089948 muestra sobreajuste y debe considerarse al comparar con B. `hgb_05` obtuvo 0.910294 en VALIDATION, solo 0.000273 más; se prefirió `hgb_02` por menor complejidad conforme a la regla previa de tratar diferencias menores a 0.001 como empate práctico.
+
+El modelo está en `artefactos/model_a/model_a.joblib`, su metadata en `artefactos/model_a/model_a_metadata.json` y la matriz de experimentos en `experiments/model_a_results.csv`. La curva Precision–Recall usa solamente VALIDATION. No existen scores ni métricas de TEST.
+
 ## Pregunta de investigación
 
 ¿El orden cronológico de las transacciones aporta información adicional para detectar fraude que no pueda capturarse únicamente mediante variables agregadas?
@@ -208,6 +218,14 @@ En el entorno inspeccionado durante las etapas 0 y 1 estaban disponibles NumPy 2
 - **Razón inicial:** las dos representaciones pueden capturar señales complementarias.
 - **Evidencia que deberá revisarse posteriormente:** diferencia de AUC-PR e impacto económico en VALIDATION bajo el criterio predefinido.
 - **Veredicto final:** pendiente.
+
+### 4. HistGradientBoosting como Modelo A
+
+- **Decisión:** congelar `hgb_02` como baseline sin orden.
+- **Alternativas consideradas:** regresión logística y cuatro configuraciones adicionales de HistGradientBoosting.
+- **Razón inicial:** relaciones no lineales, interacciones tabulares y soporte nativo de categóricas sin añadir dependencias externas.
+- **Evidencia que deberá revisarse posteriormente:** AP 0.910021 en VALIDATION; gap TRAIN–VALIDATION de 0.089948. TEST permanece sellado.
+- **Veredicto final:** candidato de Modelo A congelado para compararlo después con B y C.
 
 ## Candidato al Proyecto Final
 
