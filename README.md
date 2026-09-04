@@ -2,11 +2,39 @@
 
 Proyecto del curso **Deep Learning 2026**. El objetivo es medir si el orden cronológico de las transacciones aporta información para detectar fraude que no esté ya contenida en variables agregadas, y estimar cuánto vale esa información en términos económicos.
 
-Este repositorio contiene únicamente las **etapas 0 y 1**: preparación y diseño experimental. En este punto no se han generado datos, entrenado modelos, elegido umbrales ni observado resultados.
+Este repositorio contiene las **etapas 0 a 3**: diseño experimental y Dataset Version 1. No se han entrenado modelos, creado splits, elegido umbrales ni calculado métricas predictivas.
 
 ## Ruta de datos
 
-Usaremos la **Ruta A: datos sintéticos con generador propio**. En la etapa siguiente se construirá un generador reproducible con varios perfiles legítimos, casos legítimos difíciles y al menos tres mecanismos de fraude. Uno de los mecanismos dependerá principalmente del orden. Esta elección permite controlar qué señal existe y comprobar si un modelo realmente aprovecha la secuencia, sin presentar datos sintéticos como si fueran comportamiento bancario real.
+Usamos la **Ruta A: datos sintéticos con generador propio**. El generador reproducible contiene varios perfiles legítimos, casos legítimos difíciles y tres mecanismos de fraude. Uno depende principalmente del orden. Esta elección permite controlar qué señal existe y comprobar más adelante si un modelo aprovecha la secuencia, sin presentar datos sintéticos como si fueran comportamiento bancario real.
+
+## Datos sintéticos
+
+Dataset Version 1 contiene **95,767 transacciones de 2,800 tarjetas**, desde `2025-01-01T00:00:00` hasta `2025-06-29T23:59:59`. Se generó con semilla 42 y una prevalencia de fraude de **1.6446 %**. Las transacciones crudas están en `data/generated/transactions.csv`; la configuración exacta en `data/generated/generator_config.json`; y el resumen, validaciones y hash en `data/generated/dataset_metadata.json`.
+
+El formato es CSV porque el entorno actual no cuenta con pandas ni un motor Parquet. Esto evita instalar dependencias solo para serializar y hace que el fingerprint corresponda a los bytes exactos que consumirán las etapas posteriores.
+
+Las columnas son `transaction_id`, `card_id`, `timestamp`, `amount`, `merchant_category`, `channel`, `distance_from_home_km`, `is_international`, `is_fraud`, `fraud_type`, `fraud_stage`, `customer_profile` y `hard_negative_type`. Los IDs, etiquetas, etapas, perfil y marca de hard negative están declarados centralmente como metadata y **no son features**. Las variables temporales derivadas se calcularán después de forma causal.
+
+Los perfiles son regular, online, alto gasto, variable y viajero. Sus preferencias latentes modifican monto típico, dispersión, frecuencia, horario, categorías, canales y distancia. Ninguna de esas preferencias internas se entrega directamente como predictor.
+
+Los mecanismos generados son:
+
+- `testing_cashout`: de dos a cinco pruebas pequeñas seguidas por un cashout plausible.
+- `channel_takeover`: transición breve hacia canales poco habituales para la tarjeta, con contexto geográfico e internacional variable.
+- `amount_anomaly`: monto claramente desviado del comportamiento individual, sin exigir un orden particular.
+
+Los hard negatives incluyen viajes legítimos, compras grandes válidas, shopping sprees y microcompras consecutivas. Una compra legítima grande durante un viaje puede parecer una toma de cuenta; en sentido contrario, un fraude adaptado al comportamiento normal puede no dejar señal suficiente.
+
+Fingerprint SHA-256 del Dataset Version 1:
+
+`1f659a437a417e08b4274da79bfba8853887b2d4888d235c87e4a5d4ce5cf95d`
+
+## Dataset congelado
+
+Esta versión se congeló antes del entrenamiento. Los mecanismos y la configuración principal no se modificarán después para favorecer al Modelo A, B o C. Un cambio solo será válido ante un bug real y dará lugar a una versión nueva con su motivo y fingerprint documentados.
+
+Todavía no existen TRAIN, VALIDATION o TEST. El generador crea una única línea temporal completa y desconoce las futuras fronteras.
 
 ## Pregunta de investigación
 
@@ -165,7 +193,7 @@ El nombre del notebook conserva `apellidos` como marcador visible hasta conocer 
 
 ## Estado y siguientes etapas
 
-Etapas 0 y 1 completadas a nivel de diseño. Queda pendiente la etapa 2: especificar e implementar el generador, validar causalidad y distribución de los datos, y crear datos versionados. No se avanzó hacia ella.
+Etapas 0 a 3 completadas. Quedan pendientes el preprocessing causal, el split estrictamente temporal y, posteriormente, el entrenamiento. El dataset permanece crudo: no hay ventanas agregadas, secuencias finales, normalización ni balanceo.
 
 Lista de control actual:
 

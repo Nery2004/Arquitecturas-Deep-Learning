@@ -1,0 +1,91 @@
+{
+  "dataset_version": "1",
+  "generator_version": "1.0.0",
+  "seed": 42,
+  "start_date": "2025-01-01T00:00:00",
+  "end_date": "2025-06-29T23:59:59",
+  "n_cards": 2800,
+  "n_transactions": 95767,
+  "n_legitimate": 94192,
+  "n_fraud": 1575,
+  "fraud_rate": 0.016446166215919888,
+  "fraud_counts_by_type": {
+    "amount_anomaly": 86,
+    "channel_takeover": 543,
+    "testing_cashout": 946
+  },
+  "hard_negative_counts": {
+    "legitimate_large_purchase": 155,
+    "legitimate_micro_purchases": 657,
+    "legitimate_shopping_spree": 661,
+    "legitimate_trip": 469
+  },
+  "history_length_per_card": {
+    "min": 11,
+    "median": 34.0,
+    "mean": 34.2025,
+    "max": 68
+  },
+  "metadata_only_columns": [
+    "transaction_id",
+    "card_id",
+    "is_fraud",
+    "fraud_type",
+    "fraud_stage",
+    "customer_profile",
+    "hard_negative_type"
+  ],
+  "model_feature_candidates": [
+    "timestamp",
+    "amount",
+    "merchant_category",
+    "channel",
+    "distance_from_home_km",
+    "is_international"
+  ],
+  "fingerprint_algorithm": "SHA-256 over exact UTF-8 CSV bytes",
+  "dataset_fingerprint": "1f659a437a417e08b4274da79bfba8853887b2d4888d235c87e4a5d4ce5cf95d",
+  "validation_summary": {
+    "fraud_rate": 0.016446166215919888,
+    "fraud_counts": {
+      "amount_anomaly": 86,
+      "channel_takeover": 543,
+      "testing_cashout": 946
+    },
+    "fraud_counts_by_period_third": [
+      510,
+      571,
+      494
+    ],
+    "fraud_card_share": 0.17464285714285716,
+    "category_value_fraud_rates": {
+      "channel": {
+        "ATM": 0.051463020144096455,
+        "CONTACTLESS": 0.025552555255525553,
+        "ONLINE": 0.019243229234158353,
+        "POS": 0.0031496062992125984
+      },
+      "merchant_category": {
+        "electronics": 0.020213724732844083,
+        "entertainment": 0.0053184589440913215,
+        "fuel": 0.0084,
+        "grocery": 0.0026707163803938,
+        "other": 0.03409090909090909,
+        "pharmacy": 0.009447236180904522,
+        "restaurant": 0.0044570215776441454,
+        "retail": 0.010179181482256152,
+        "services": 0.10411244143675169,
+        "travel": 0.009861932938856016
+      },
+      "is_international": {
+        "0": 0.013089147413128253,
+        "1": 0.09983810037776579
+      }
+    },
+    "max_hourly_fraud_rate": 0.023618895116092876,
+    "hours_with_fraud": 23,
+    "all_fraud_cards_also_have_legitimate_activity": true,
+    "amount_ranges_overlap": true
+  },
+  "generated_at_utc": "2026-09-04T15:36:41+00:00"
+}

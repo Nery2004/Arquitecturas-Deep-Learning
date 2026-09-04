@@ -1,0 +1,16 @@
+{
+  "random_seed": 42,
+  "start_date": "2025-01-01",
+  "n_days": 180,
+  "n_cards": 2800,
+  "mean_transactions_per_card": 34.0,
+  "fraud_episode_probability": 0.18,
+  "hard_negative_probability": 0.22,
+  "profile_probabilities": [
+    0.38,
+    0.2,
+    0.14,
+    0.16,
+    0.12
+  ]
+}
