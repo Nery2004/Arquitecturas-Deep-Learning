@@ -1,0 +1,126 @@
+{
+  "model_name": "MODEL_B_CANDIDATE",
+  "architecture": "unidirectional GRU + current branch",
+  "candidate_id": "b3",
+  "hidden_size": 64,
+  "num_layers": 1,
+  "dense_size": 64,
+  "dropout": 0.4,
+  "merchant_embedding_dim": 6,
+  "channel_embedding_dim": 3,
+  "learning_rate": 0.0008,
+  "batch_size": 256,
+  "optimizer": "AdamW",
+  "loss": "BCEWithLogitsLoss",
+  "pos_weight": 56.87027027027027,
+  "max_epochs": 30,
+  "patience": 5,
+  "best_epoch": 9,
+  "epochs_run": 14,
+  "trainable_parameters": 25499,
+  "random_seed": 42,
+  "device": "cpu",
+  "dataset_fingerprint": "1f659a437a417e08b4274da79bfba8853887b2d4888d235c87e4a5d4ce5cf95d",
+  "processed_dataset_fingerprint": "cd496e81ad37906e6da3c4abfdc249da48623a37d807fba1189c4fa198d4b65a",
+  "split_fingerprint": "d938f54ba6258ba09db12412b9bfd7a99d3472fffd68174c53d4a19c2a10f04f",
+  "max_history": 12,
+  "sequence_numeric_features": [
+    "amount",
+    "distance_from_home_km",
+    "is_international",
+    "hour_sin",
+    "hour_cos",
+    "day_sin",
+    "day_cos",
+    "time_since_previous_hours"
+  ],
+  "sequence_categorical_features": [
+    "merchant_category",
+    "channel"
+  ],
+  "current_numeric_features": [
+    "current_amount",
+    "current_distance_from_home_km",
+    "current_is_international",
+    "current_hour_sin",
+    "current_hour_cos",
+    "current_day_sin",
+    "current_day_cos",
+    "time_since_previous_hours"
+  ],
+  "current_categorical_features": [
+    "current_merchant_category",
+    "current_channel"
+  ],
+  "aggregate_features_used": false,
+  "training_split": "TRAIN",
+  "early_stopping_split": "VALIDATION",
+  "selection_split": "VALIDATION",
+  "test_evaluated": false,
+  "n_train": 64236,
+  "n_validation": 14365,
+  "n_positive_train": 1110,
+  "n_negative_train": 63126,
+  "primary_metric": "AUC-PR / Average Precision (AP)",
+  "train_ap": 0.8368209639039391,
+  "validation_ap": 0.7206737920131867,
+  "train_validation_gap": 0.11614717189075241,
+  "reproducibility_validation_ap_run_1": 0.7206737920131867,
+  "reproducibility_validation_ap_run_2": 0.7206737920131867,
+  "reproducibility_absolute_difference": 0.0,
+  "model_a_validation_ap_context_only": 0.9100214741075414,
+  "validation_fraud_score_summary": {
+    "testing_cashout": {
+      "n": 123,
+      "mean_risk_score": 0.9731712813784437,
+      "median_risk_score": 0.9971677660942078,
+      "q90_risk_score": 0.9999629974365234
+    },
+    "channel_takeover": {
+      "n": 90,
+      "mean_risk_score": 0.7892780636961106,
+      "median_risk_score": 0.9867193698883057,
+      "q90_risk_score": 0.9998363852500916
+    },
+    "amount_anomaly": {
+      "n": 15,
+      "mean_risk_score": 0.3247788481414318,
+      "median_risk_score": 0.19553346931934357,
+      "q90_risk_score": 0.7707437753677367
+    }
+  },
+  "validation_hard_negative_score_summary": {
+    "legitimate_large_purchase": {
+      "n": 25,
+      "mean_risk_score": 0.25677061308175325,
+      "median_risk_score": 0.09465464949607849,
+      "q90_risk_score": 0.7386589407920838
+    },
+    "legitimate_micro_purchases": {
+      "n": 80,
+      "mean_risk_score": 0.3382939901779423,
+      "median_risk_score": 0.057920560240745544,
+      "q90_risk_score": 0.9480478823184968
+    },
+    "legitimate_shopping_spree": {
+      "n": 105,
+      "mean_risk_score": 0.014592180588252155,
+      "median_risk_score": 0.006522128824144602,
+      "q90_risk_score": 0.031069610267877627
+    },
+    "legitimate_trip": {
+      "n": 75,
+      "mean_risk_score": 0.40176595266442744,
+      "median_risk_score": 0.22029784321784973,
+      "q90_risk_score": 0.9808784127235413
+    }
+  },
+  "model_fingerprint_sha256": "7162428747420dd68e3e9fc28d800b2d9e43182b40319277bd69ae9f58a3e3b7",
+  "software_versions": {
+    "python": "3.12.14",
+    "numpy": "1.26.4",
+    "torch": "2.2.2",
+    "scikit-learn": "1.5.2"
+  },
+  "created_at_utc": "2026-09-04T16:37:32+00:00"
+}

@@ -93,6 +93,18 @@ El candidato congelado es `hgb_02`: learning rate 0.08, 180 iteraciones, 31 hoja
 
 El modelo está en `artefactos/model_a/model_a.joblib`, su metadata en `artefactos/model_a/model_a_metadata.json` y la matriz de experimentos en `experiments/model_a_results.csv`. La curva Precision–Recall usa solamente VALIDATION. No existen scores ni métricas de TEST.
 
+## Modelo B — GRU secuencial
+
+Modelo B recibe hasta 12 operaciones anteriores, ordenadas de la más antigua a la más reciente, y las características observables de la operación actual. No carga los 23 agregados de A. Cada evento combina ocho variables numéricas con embeddings de comercio (6 dimensiones) y canal (3 dimensiones). El left padding se compacta antes de `pack_padded_sequence`, por lo que la GRU ignora PAD y el hidden state corresponde al último evento válido.
+
+La arquitectura congelada (`b3`) usa una GRU unidireccional de una capa y 64 unidades. La rama actual proyecta sus variables a 64 unidades; ambas representaciones se concatenan y pasan por Dense/ReLU, dropout 0.4 y una salida lineal. Durante fit se usan logits con `BCEWithLogitsLoss`, `pos_weight=56.87027` calculado solo con TRAIN, AdamW, learning rate 0.0008 y batch 256. Tiene 25,499 parámetros entrenables.
+
+Early stopping observó exclusivamente AP de VALIDATION, con paciencia 5. El mejor checkpoint fue epoch 9; se ejecutaron 14 epochs. El resultado congelado es AP 0.836821 en TRAIN y 0.720674 en VALIDATION, con gap 0.116147. Se ejecutó en CPU para priorizar determinismo y funciona sin GPU.
+
+Modelo A obtuvo 0.910021 y B 0.720674 en la misma VALIDATION. Esta diferencia por sí sola **no demuestra** que el orden aporte o no aporte información: todavía debemos destruir el orden manteniendo los eventos y ejecutar las falsificaciones predefinidas. No se generaron predicciones de TEST.
+
+El checkpoint está en `artefactos/model_b/model_b.pt`, la metadata en `artefactos/model_b/model_b_metadata.json`, el historial en `artefactos/model_b/training_history.csv` y los candidatos en `experiments/model_b_results.csv`. Se reproduce con `.venv/bin/python -m src.train_model_b`.
+
 ## Pregunta de investigación
 
 ¿El orden cronológico de las transacciones aporta información adicional para detectar fraude que no pueda capturarse únicamente mediante variables agregadas?
@@ -200,8 +212,8 @@ En el entorno inspeccionado durante las etapas 0 y 1 estaban disponibles NumPy 2
 - **Decisión:** comenzar con una GRU.
 - **Alternativas consideradas:** RNN simple, LSTM, CNN temporal y Transformer.
 - **Razón inicial:** buen equilibrio entre memoria secuencial, número de parámetros y facilidad de explicación.
-- **Evidencia que deberá revisarse posteriormente:** AUC-PR, costo, estabilidad y pruebas de falsificación en VALIDATION.
-- **Veredicto final:** pendiente.
+- **Evidencia que deberá revisarse posteriormente:** B alcanzó AP 0.720674 en VALIDATION y fue reproducible; quedó debajo de A. Faltan costo y pruebas de falsificación.
+- **Veredicto final:** GRU congelada como candidato B; pendiente el veredicto sobre el valor del orden.
 
 ### 2. Partición estrictamente temporal
 
