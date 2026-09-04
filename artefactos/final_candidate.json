@@ -1,0 +1,10 @@
+{
+  "model": "A",
+  "path": "artefactos/model_a/model_a.joblib",
+  "checkpoint_sha256": "47a879faa8f4abf4472486584efd6ebf304397dbdb7e87a20ee8ca61f06e16eb",
+  "threshold": 0.05548898134596948,
+  "input_contract": "artefactos/input_output_contract.json",
+  "output": "risk_score in [0,1]; block when risk_score >= threshold",
+  "selection_source": "VALIDATION only",
+  "experimental_status": "CLOSED"
+}

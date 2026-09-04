@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1",
+  "candidate_model": "A",
+  "purpose": "Contrato preliminar; no constituye una API de producción.",
+  "current_transaction": {
+    "required_raw_fields": ["timestamp", "amount", "merchant_category", "channel", "distance_from_home_km", "is_international"],
+    "types": {"timestamp": "ISO-8601 datetime", "amount": "non-negative float GTQ", "merchant_category": "string", "channel": "string", "distance_from_home_km": "non-negative float", "is_international": "0 or 1"}
+  },
+  "card_history": {
+    "type": "ordered list of prior transactions for the same card",
+    "order": "ascending timestamp; transaction_id breaks exact timestamp ties",
+    "event_fields": ["transaction_id", "timestamp", "amount", "merchant_category", "channel", "distance_from_home_km", "is_international"],
+    "constraint": "Only events strictly prior to the current transaction may be used. Labels and fraud metadata are forbidden."
+  },
+  "derived_model_inputs": ["8 current numeric features", "2 current categorical features", "23 causal aggregate features listed in model_a_metadata.json"],
+  "preprocessing": {"artifacts": "artefactos/preprocessing/", "fit_split": "TRAIN", "unknown_category": "UNK", "missing_numeric": "TRAIN median"},
+  "output": {"risk_score": "float in [0,1]", "threshold": 0.05548898134596948, "decision_rule": "block if risk_score >= threshold; otherwise allow", "decision_values": ["allow", "block"]},
+  "limits": ["validated only on synthetic data", "costs are simplified expected-damage assumptions", "requires monitoring for temporal drift", "operational review is needed before automatic blocking"]
+}

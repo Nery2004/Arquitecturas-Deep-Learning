@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "experimental_status": "CLOSED",
+  "dataset": {
+    "version": "1",
+    "transactions": 95767,
+    "cards": 2800,
+    "fraud_rate": 0.016446166215919888,
+    "period_start": "2025-01-01T00:00:00",
+    "period_end": "2025-06-29T23:59:59",
+    "fingerprint_sha256": "1f659a437a417e08b4274da79bfba8853887b2d4888d235c87e4a5d4ce5cf95d"
+  },
+  "processed_fingerprint_sha256": "cd496e81ad37906e6da3c4abfdc249da48623a37d807fba1189c4fa198d4b65a",
+  "split_fingerprint_sha256": "d938f54ba6258ba09db12412b9bfd7a99d3472fffd68174c53d4a19c2a10f04f",
+  "splits": {
+    "train": {"n": 64236, "frauds": 1110, "start": "2025-01-01T04:00:48", "end": "2025-05-07T06:01:10"},
+    "validation": {"n": 14365, "frauds": 228, "start": "2025-05-07T06:10:15", "end": "2025-06-03T02:43:40"},
+    "test": {"n": 14366, "frauds": 222, "start": "2025-06-03T02:55:10", "end": "2025-06-29T23:59:59"}
+  },
+  "models": {
+    "A": {"checkpoint": "artefactos/model_a/model_a.joblib", "checkpoint_sha256": "47a879faa8f4abf4472486584efd6ebf304397dbdb7e87a20ee8ca61f06e16eb", "validation_ap": 0.9100214741075414, "test_ap": 0.9191083125552655, "threshold": 0.05548898134596948, "precision": 0.5023809523809524, "recall": 0.9504504504504504, "f1": 0.6573208722741434, "tp": 211, "fp": 209, "tn": 13935, "fn": 11, "cost_gtq": 83820},
+    "B": {"checkpoint": "artefactos/model_b/model_b.pt", "checkpoint_sha256": "7162428747420dd68e3e9fc28d800b2d9e43182b40319277bd69ae9f58a3e3b7", "validation_ap": 0.7206737920131867, "test_ap": 0.7150089539708074, "threshold": 0.8253989815711975, "precision": 0.3023255813953488, "recall": 0.8783783783783784, "f1": 0.4498269896193771, "tp": 195, "fp": 450, "tn": 13694, "fn": 27, "cost_gtq": 194400},
+    "C": {"checkpoint": "artefactos/model_c/model_c.pt", "checkpoint_sha256": "26f0d7e23383aba5fa8c8de3e2cb2609648d4a1f92973a16ea3843d123d12a0e", "validation_ap": 0.815180298825746, "test_ap": 0.8248395834861607, "threshold": 0.6682388782501221, "precision": 0.37781954887218044, "recall": 0.9054054054054054, "f1": 0.53315649867374, "tp": 201, "fp": 331, "tn": 13813, "fn": 21, "cost_gtq": 147780}
+  },
+  "falsification": {"model_b_original_validation_ap": 0.7206737920131868, "permuted_mean_ap": 0.2843251489847266, "permuted_std_ap": 0.020168383416294573, "absolute_drop": 0.4363486430284602, "short_history_ap": 0.7108234251071578},
+  "economics": {"candidate": "A", "cost_A_gtq": 83820, "cost_candidate_gtq": 83820, "savings_vs_A_gtq": 0, "test_days": 26.878344907407406, "days_per_month": 30.44, "monthly_equivalent_candidate_gtq": 94927.00569136745},
+  "final": {"recommendation": "CONSERVAR", "key_limitation": "Modelo A detectó solo 7 de 13 casos amount_anomaly en TEST; además, todos los datos son sintéticos.", "scale_note": "Equivalente mensual dentro de la escala simulada; no extrapolar directamente a 1.4 millones de tarjetas."}
+}

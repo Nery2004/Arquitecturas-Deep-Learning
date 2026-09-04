@@ -1,0 +1,8 @@
+{
+  "verified_platform": "macOS x86_64",
+  "random_seed": 42,
+  "model_a_environment": {"python": "3.14.2", "numpy": "2.4.4", "scikit-learn": "1.9.0", "joblib": "1.6.0"},
+  "models_b_c_environment": {"python": "3.12.14", "numpy": "1.26.4", "scikit-learn": "1.5.2", "torch": "2.2.2"},
+  "notebook_test_environment": {"python": "3.12.14"},
+  "compatibility_note": "Model A must be loaded with its recorded sklearn/NumPy environment. Models B/C require the PyTorch environment. The dual environment preserves frozen checkpoints and avoids unsafe reserialization after TEST."
+}
